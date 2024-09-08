@@ -3,7 +3,7 @@ extends CharacterBody2D
 const SPEED = 130.0
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	var input_vector = Vector2.ZERO
 	# Get the input for X and Y axes
@@ -23,6 +23,24 @@ func _physics_process(delta: float) -> void:
 		player_sprite.play("default")
 	else:
 		player_sprite.stop()
+
+	# Handle Ordinance
+	if Input.is_action_pressed("Ordinance"):
+		# Put Punching Animation Here to Play
+		pass
+	# Handle Capture
+	if Input.is_action_pressed("Capture"):
+		# Capture Camera
+		pass
+	# Handle Flash
+	if Input.is_action_pressed("Flash"):
+		# Flash Camera
+		pass
+	# Handle Interact
+	if Input.is_action_pressed("Interact"):
+		# Interact
+		pass
+
 	# Apply the movement
 	velocity = input_vector * SPEED
 	move_and_slide()
