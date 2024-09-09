@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://7frb0sheglw3"]
+[gd_scene load_steps=20 format=4 uid="uid://7frb0sheglw3"]
 
 [ext_resource type="Script" path="res://Scripts/main_scene_2d.gd" id="1_7vwou"]
 [ext_resource type="Script" path="res://Scripts/health_manager.gd" id="2_8x07p"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://jgt5flob20ra" path="res://Scenes/tree.tscn" id="7_o345s"]
 [ext_resource type="PackedScene" uid="uid://ywrv2mhwrmti" path="res://Scenes/stone.tscn" id="8_ivbty"]
 [ext_resource type="PackedScene" uid="uid://b2w34hxceguif" path="res://Scenes/grain.tscn" id="9_p35ea"]
+[ext_resource type="Script" path="res://Scripts/cage_2d.gd" id="10_av8d4"]
+[ext_resource type="Texture2D" uid="uid://chkwcbqwax5tb" path="res://Sprites/Test/Test_Cage_Built.PNG" id="10_p87re"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n2y2y"]
 texture = ExtResource("6_trbbs")
@@ -4141,6 +4143,9 @@ height = 18.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gpup"]
 size = Vector2(519, 287)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcwhy"]
+size = Vector2(44, 40)
+
 [node name="MainScene" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_7vwou")
@@ -4212,7 +4217,7 @@ metadata/_edit_lock_ = true
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(118, 74)
-collision_layer = 257
+collision_layer = 65793
 motion_mode = 1
 script = ExtResource("4_nyq4j")
 
@@ -4234,9 +4239,34 @@ position = Vector2(260, -149)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TreeSpawnArea"]
 shape = SubResource("RectangleShape2D_4gpup")
 
+[node name="StoneSpawnArea" type="Area2D" parent="."]
+position = Vector2(260, 369)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StoneSpawnArea"]
+shape = SubResource("RectangleShape2D_4gpup")
+
 [node name="Tree" parent="." instance=ExtResource("7_o345s")]
 position = Vector2(186, 93)
 
 [node name="Stone" parent="." instance=ExtResource("8_ivbty")]
 
 [node name="Grain" parent="." instance=ExtResource("9_p35ea")]
+
+[node name="Cage" type="Area2D" parent="."]
+z_index = -1
+position = Vector2(297, 151)
+collision_layer = 0
+collision_mask = 65536
+script = ExtResource("10_av8d4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cage"]
+position = Vector2(9.53674e-06, -3.8147e-06)
+scale = Vector2(0.180041, 0.180041)
+texture = ExtResource("10_p87re")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cage"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_mcwhy")
+
+[connection signal="body_entered" from="Cage" to="Cage" method="_on_body_entered"]
+[connection signal="body_exited" from="Cage" to="Cage" method="_on_body_exited"]

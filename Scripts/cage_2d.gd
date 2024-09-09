@@ -1,24 +1,27 @@
 extends Area2D
-var grain_hp = 4
-var can_collect= true
+
+#
+const WOOD_COST = 20
+const STONE_COST = 20
+var is_built = false
 @onready var player = get_node("/root/MainScene/Player")
 @onready var rm = get_node("/root/MainScene/ResourceManager")
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var punch_timer: Timer = $PunchTimer
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+var unbuilt_cage = preload("res://Sprites/Test/Test_Cage_Unbuilt.PNG")
+var built_cage = preload("res://Sprites/Cage.png")
 
 func _ready() -> void:
+	sprite_2d.texture = unbuilt_cage
 	set_process(false)
 
 func _process(_delta: float) -> void:
-	if grain_hp <= 0:
-		queue_free()
-
-	if Input.is_action_pressed("Ordinance") and can_collect == true:
-		rm.increase_grain(1)
-		grain_hit()
-		can_collect = false
-		punch_timer.start()
+	if is_built == false:
+		if Input.is_action_pressed("Interact") and rm.wood >= WOOD_COST and rm.stone >= STONE_COST:
+			rm.increase_wood(-20)
+			rm.increase_stone(-20)
+			build_cage()
+	if is_built == true:
+		sprite_2d.texture = built_cage
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.name == "Player":
@@ -34,9 +37,5 @@ func _on_body_exited(body: Node2D) -> void:
 func self_modulate(value: float):
 	sprite_2d.modulate.r = value
 
-func _on_punch_timer_timeout() -> void:
-	can_collect = true
-
-func grain_hit():
-	animation_player.play("grain_hit")
-	grain_hp -= 1
+func build_cage():
+	is_built = true

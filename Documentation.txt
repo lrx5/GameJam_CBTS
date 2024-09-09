@@ -1,0 +1,6 @@
+Noah's Ark Documentation
+
+Collision Layer for Player, Mask for the latter;
+1 - for general objects
+9 - Resources
+17 - Interactables

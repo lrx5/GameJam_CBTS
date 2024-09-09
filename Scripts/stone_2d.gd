@@ -1,7 +1,8 @@
 extends Area2D
 var stone_hp = 16
 var can_collect= true
-@onready var rm: Node = %ResourceManager
+@onready var player = get_node("/root/MainScene/Player")
+@onready var rm = get_node("/root/MainScene/ResourceManager")
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var punch_timer: Timer = $PunchTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
