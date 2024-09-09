@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ywrv2mhwrmti"]
 
-[ext_resource type="Script" path="res://Scripts/stone.gd" id="1_ff1r1"]
+[ext_resource type="Script" path="res://Scripts/stone_2d.gd" id="1_ff1r1"]
 [ext_resource type="Texture2D" uid="uid://b11cb0cao1ady" path="res://Sprites/Test/Test_Rock.PNG" id="2_u61no"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8h2g"]

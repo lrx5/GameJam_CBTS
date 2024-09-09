@@ -1,13 +1,13 @@
 extends Area2D
 var tree_hp = 12
 var can_collect= true
-@onready var rm: Node = %ResourceManager
+@onready var player = get_node("/root/MainScene/Player")
+@onready var rm = get_node("/root/MainScene/ResourceManager")
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var punch_timer: Timer = $PunchTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
-	var rm = get_node("/root/MainScene/ResourceManager")
 	set_process(false)
 
 func _process(_delta: float) -> void:
@@ -19,6 +19,11 @@ func _process(_delta: float) -> void:
 		tree_hit()
 		can_collect = false
 		punch_timer.start()
+
+	if player.position.y > position.y - 10:
+		z_index = -1  # Player is in front of the tree
+	else:
+		z_index = 1  # Tree is in front of the player
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.name == "Player":
