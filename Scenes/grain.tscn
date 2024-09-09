@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2w34hxceguif"]
+
+[ext_resource type="Script" path="res://Scripts/grain_2d.gd" id="1_ggy1n"]
+[ext_resource type="Texture2D" uid="uid://ryoyh4w8utd2" path="res://Sprites/Test/Test_Grain.png" id="2_bxeok"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rijia"]
+size = Vector2(14, 12)
+
+[sub_resource type="Animation" id="Animation_o5cmf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_isq61"]
+resource_name = "grain_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_s0b3a"]
+resource_name = "stone_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yksgk"]
+_data = {
+"RESET": SubResource("Animation_o5cmf"),
+"grain_hit": SubResource("Animation_isq61"),
+"stone_hit": SubResource("Animation_s0b3a")
+}
+
+[node name="Grain" type="Area2D"]
+z_index = -1
+position = Vector2(204, 134)
+collision_layer = 0
+collision_mask = 256
+script = ExtResource("1_ggy1n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, -7)
+scale = Vector2(0.194, 0.194)
+texture = ExtResource("2_bxeok")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_rijia")
+
+[node name="PunchTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yksgk")
+}
+speed_scale = 4.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="PunchTimer" to="." method="_on_punch_timer_timeout"]

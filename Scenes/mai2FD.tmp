@@ -1,0 +1,138 @@
+[gd_scene load_steps=15 format=3 uid="uid://cae2hm25cn43y"]
+
+[ext_resource type="Script" path="res://Scripts/main_scene_3d.gd" id="1_4o1tl"]
+[ext_resource type="Script" path="res://Scripts/player_controller_3d.gd" id="1_ju51v"]
+[ext_resource type="Script" path="res://Scripts/health_manager.gd" id="2_4emdl"]
+[ext_resource type="Script" path="res://Scripts/resource_manager.gd" id="3_ujvyx"]
+[ext_resource type="Texture2D" uid="uid://b8o74sgnfwflv" path="res://Sprites/Test/tilemap-characters_packed.png" id="5_rj1ur"]
+[ext_resource type="PackedScene" uid="uid://codybtkdx66i5" path="res://Scenes/tree_3d.tscn" id="6_68dqr"]
+[ext_resource type="PackedScene" uid="uid://du505uiyh38tn" path="res://Scenes/stone_3d.tscn" id="7_nn68q"]
+[ext_resource type="PackedScene" uid="uid://dmje1w602j2ki" path="res://Scenes/grain_3d.tscn" id="8_ue3ie"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nkl0f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyt5t"]
+atlas = ExtResource("5_rj1ur")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mt6nb"]
+atlas = ExtResource("5_rj1ur")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wgqos"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyt5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mt6nb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g30s0"]
+size = Vector3(0.224213, 0.179504, 0.102478)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v6pkq"]
+size = Vector3(5.00121, 1, 2.98157)
+
+[node name="MainScene" type="Node3D"]
+script = ExtResource("1_4o1tl")
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Hud"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WoodLabel" type="Label" parent="Hud/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 69.0
+offset_bottom = 29.0
+text = "Wood: 0
+"
+
+[node name="StoneLabel" type="Label" parent="Hud/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 29.0
+offset_right = 69.0
+offset_bottom = 52.0
+text = "Stone: 0
+"
+
+[node name="GrainLabel" type="Label" parent="Hud/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 53.0
+offset_right = 69.0
+offset_bottom = 76.0
+text = "Grain: 0
+"
+
+[node name="MeatLabel" type="Label" parent="Hud/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 78.0
+offset_right = 69.0
+offset_bottom = 101.0
+text = "Meat: 0
+"
+
+[node name="HealthManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_4emdl")
+
+[node name="ResourceManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_ujvyx")
+
+[node name="Floor" type="Node" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
+mesh = SubResource("PlaneMesh_nkl0f")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000143111, -0.0979281, -0.00181794)
+collision_layer = 257
+script = ExtResource("1_ju51v")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0.213735, 0)
+sprite_frames = SubResource("SpriteFrames_wgqos")
+frame_progress = 0.327099
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000356376, 0.194079, 0.00179392)
+shape = SubResource("BoxShape3D_g30s0")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, -0.00147855, 0.78892, 1.33551)
+near = 0.45
+
+[node name="Tree" parent="." instance=ExtResource("6_68dqr")]
+
+[node name="Stone" parent="." instance=ExtResource("7_nn68q")]
+
+[node name="Grain" parent="." instance=ExtResource("8_ue3ie")]
+
+[node name="TreeSpawnArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38745, 0, -2.10286)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TreeSpawnArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.116539, 0, -1.41621)
+shape = SubResource("BoxShape3D_v6pkq")

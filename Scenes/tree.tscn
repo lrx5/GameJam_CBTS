@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://jgt5flob20ra"]
+
+[ext_resource type="Script" path="res://Scripts/tree_2d.gd" id="1_y86gr"]
+[ext_resource type="Texture2D" uid="uid://cfrv6pde4b7yv" path="res://Sprites/Test/Test_Tree.PNG" id="2_bm6hn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lpv5"]
+size = Vector2(7, 27)
+
+[sub_resource type="Animation" id="Animation_uv32j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_kd1ml"]
+resource_name = "tree_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nfxld"]
+_data = {
+"RESET": SubResource("Animation_uv32j"),
+"tree_hit": SubResource("Animation_kd1ml")
+}
+
+[node name="Tree" type="Area2D"]
+position = Vector2(192, 56)
+collision_layer = 0
+collision_mask = 256
+script = ExtResource("1_y86gr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(0.170224, 0.170224)
+texture = ExtResource("2_bm6hn")
+offset = Vector2(0.00012207, -223.236)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -15)
+shape = SubResource("RectangleShape2D_3lpv5")
+
+[node name="PunchTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nfxld")
+}
+speed_scale = 4.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="PunchTimer" to="." method="_on_punch_timer_timeout"]

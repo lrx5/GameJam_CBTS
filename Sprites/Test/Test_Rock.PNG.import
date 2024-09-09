@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8o74sgnfwflv"
-path.s3tc="res://.godot/imported/tilemap-characters_packed.png-3d93e0c6aada519125fd10abd63a95eb.s3tc.ctex"
+uid="uid://b11cb0cao1ady"
+path.s3tc="res://.godot/imported/Test_Rock.PNG-733b56ba132a1e07db3c429c7906f985.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Sprites/Test/tilemap-characters_packed.png"
-dest_files=["res://.godot/imported/tilemap-characters_packed.png-3d93e0c6aada519125fd10abd63a95eb.s3tc.ctex"]
+source_file="res://Sprites/Test/Test_Rock.PNG"
+dest_files=["res://.godot/imported/Test_Rock.PNG-733b56ba132a1e07db3c429c7906f985.s3tc.ctex"]
 
 [params]
 
