@@ -4238,6 +4238,5 @@ shape = SubResource("RectangleShape2D_4gpup")
 position = Vector2(186, 93)
 
 [node name="Stone" parent="." instance=ExtResource("8_ivbty")]
-rotation = 0.0872665
 
 [node name="Grain" parent="." instance=ExtResource("9_p35ea")]

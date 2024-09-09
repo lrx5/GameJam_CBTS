@@ -1,5 +1,5 @@
 extends Area3D
-var tree_hp = 12
+var stone_hp = 16
 var can_collect= true
 @onready var player = get_node("/root/MainScene/Player")
 @onready var rm = get_node("/root/MainScene/ResourceManager")
@@ -11,12 +11,12 @@ func _ready() -> void:
 	set_process(false)
 
 func _process(_delta: float) -> void:
-	if tree_hp <= 0:
+	if stone_hp <= 0:
 		queue_free()
 
 	if Input.is_action_pressed("Ordinance") and can_collect == true:
-		rm.increase_wood(1)
-		tree_hit()
+		rm.increase_stone(1)
+		stone_hit()
 		can_collect = false
 		punch_timer.start()
 
@@ -26,6 +26,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D and body.name == "Player":
+		@warning_ignore("narrowing_conversion")
 		self_modulate(0.5)
 		set_process(true)
 
@@ -40,9 +41,9 @@ func self_modulate(value: float):
 func _on_punch_timer_timeout() -> void:
 	can_collect = true
 
-func tree_hit():
-	animation_player.play("tree_hit_3d")
-	tree_hp -= 1
+func stone_hit():
+	animation_player.play("stone_hit_3d")
+	stone_hp -= 1
 
 func update_opacity(_value: float):
 	if _value > 2:

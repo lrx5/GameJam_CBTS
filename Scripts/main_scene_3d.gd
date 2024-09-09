@@ -1,13 +1,13 @@
-extends Node2D
+extends Node3D
 
 # Packed Scenes for spawner
-@export var tree_scene: PackedScene = load("res://Scenes/tree.tscn")
-@export var stone_scene: PackedScene = load("res://Scenes/stone.tscn")
-@export var grain_scene: PackedScene = load("res://Scenes/grain.tscn")
+@export var tree_scene: PackedScene = load("res://Scenes/tree_3d.tscn")
+@export var stone_scene: PackedScene = load("res://Scenes/stone_3d.tscn")
+@export var grain_scene: PackedScene = load("res://Scenes/grain_3d.tscn")
 
 # Spawn Areas
-@onready var tree_spawn_area: Area2D = $TreeSpawnArea
-@onready var tree_spawn_shape: CollisionShape2D = $TreeSpawnArea/CollisionShape2D
+@onready var tree_spawn_area: Area3D = $TreeSpawnArea
+@onready var tree_spawn_shape: CollisionShape3D = $TreeSpawnArea/CollisionShape3D
 
 # Number of Spawns
 @export var tree_count: int = 10  # Number of trees to spawn
@@ -24,11 +24,12 @@ func spawn_resources():
 		add_child(tree_instance)
 
 # Function to get a random position inside the Area2D's collision shape
-func get_random_position_in_area() -> Vector2:
-	var shape = tree_spawn_shape.shape as RectangleShape2D # Assuming it's a rectangle
+func get_random_position_in_area() -> Vector3:
+	var shape = tree_spawn_shape.shape as BoxShape3D # Assuming it's a rectangle
 	var extents = shape.extents
 	# Random position within the extents of the shape
 	var x = randf_range(-extents.x, extents.x)
-	var y = randf_range(-extents.y, extents.y)
+	var y = 0
+	var z = randf_range(-extents.z, extents.z)
 	# Offset by the spawn area’s position
-	return tree_spawn_area.position + Vector2(x, y)
+	return tree_spawn_area.position + Vector3(x, y, z)
