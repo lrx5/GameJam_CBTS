@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://7frb0sheglw3"]
+[gd_scene load_steps=26 format=4 uid="uid://7frb0sheglw3"]
 
 [ext_resource type="Script" path="res://Scripts/main_scene_2d.gd" id="1_7vwou"]
 [ext_resource type="Script" path="res://Scripts/health_manager.gd" id="2_8x07p"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b2w34hxceguif" path="res://Scenes/grain.tscn" id="9_p35ea"]
 [ext_resource type="Script" path="res://Scripts/cage_2d.gd" id="10_av8d4"]
 [ext_resource type="Texture2D" uid="uid://chkwcbqwax5tb" path="res://Sprites/Test/Test_Cage_Built.PNG" id="10_p87re"]
+[ext_resource type="AudioStream" uid="uid://d4now0v8ujyhj" path="res://Audio/walking.wav" id="11_5i24b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n2y2y"]
 texture = ExtResource("6_trbbs")
@@ -4144,6 +4145,9 @@ animations = [{
 radius = 8.0
 height = 18.0
 
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_3xw8e"]
+points = PackedVector2Array(0, 0, 80, 50, 80, -50)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gpup"]
 size = Vector2(519, 287)
 
@@ -4252,7 +4256,7 @@ tile_set = SubResource("TileSet_mp6da")
 metadata/_edit_lock_ = true
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(118, 74)
+position = Vector2(-96, 74)
 collision_layer = 65793
 motion_mode = 1
 script = ExtResource("4_nyq4j")
@@ -4268,6 +4272,14 @@ shape = SubResource("CapsuleShape2D_jkaq6")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
+
+[node name="WalkingSFX" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("11_5i24b")
+
+[node name="CameraFlash" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CameraFlash"]
+shape = SubResource("ConvexPolygonShape2D_3xw8e")
 
 [node name="TreeSpawnArea" type="Area2D" parent="."]
 position = Vector2(260, -149)
@@ -4304,5 +4316,6 @@ texture = ExtResource("10_p87re")
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_mcwhy")
 
+[connection signal="finished" from="Player/WalkingSFX" to="Player" method="_on_walking_sfx_finished"]
 [connection signal="body_entered" from="Cage" to="Cage" method="_on_body_entered"]
 [connection signal="body_exited" from="Cage" to="Cage" method="_on_body_exited"]

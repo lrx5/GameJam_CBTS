@@ -6,6 +6,7 @@ var can_collect= true
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var punch_timer: Timer = $PunchTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var grain_hit_sfx: AudioStreamPlayer2D = $GrainHitSFX
 
 func _ready() -> void:
 	set_process(false)
@@ -40,3 +41,4 @@ func _on_punch_timer_timeout() -> void:
 func grain_hit():
 	animation_player.play("grain_hit")
 	grain_hp -= 1
+	grain_hit_sfx.play()

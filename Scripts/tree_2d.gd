@@ -6,6 +6,7 @@ var can_collect= true
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var punch_timer: Timer = $PunchTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var tree_hit_sfx: AudioStreamPlayer2D = $TreeHitSFX
 
 func _ready() -> void:
 	set_process(false)
@@ -44,3 +45,4 @@ func _on_punch_timer_timeout() -> void:
 func tree_hit():
 	animation_player.play("tree_hit")
 	tree_hp -= 1
+	tree_hit_sfx.play()

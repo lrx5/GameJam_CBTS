@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
 const SPEED = 130.0
+var sfx_can_play = true
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var walking_sfx: AudioStreamPlayer2D = $WalkingSFX
+@onready var camera_flash: Area2D = $CameraFlash
 
 func _physics_process(_delta: float) -> void:
 	
@@ -14,15 +17,21 @@ func _physics_process(_delta: float) -> void:
 	if input_vector != Vector2.ZERO:
 		input_vector = input_vector.normalized()
 
-	# Flip Sprite
+	# If Facing Right
 	if input_vector.x > 0:
 		player_sprite.flip_h = true
+		camera_flash.rotation_degrees = 0  # CameraFlash Facing Right
+	# If Facing Left
 	if input_vector.x < 0:
 		player_sprite.flip_h = false
+		camera_flash.rotation_degrees = 180  # CameraFlash Facing Left
 	if input_vector.x != 0 or input_vector.y != 0:
 		player_sprite.play("default")
+		if sfx_can_play:
+			play_walking_sfx()
 	else:
 		player_sprite.stop()
+		stop_walking_sfx()
 
 	# Handle Ordinance
 	if Input.is_action_pressed("Ordinance"):
@@ -44,3 +53,14 @@ func _physics_process(_delta: float) -> void:
 	# Apply the movement
 	velocity = input_vector * SPEED
 	move_and_slide()
+
+func play_walking_sfx():
+	sfx_can_play = false
+	walking_sfx.play()
+
+func stop_walking_sfx():
+	walking_sfx.stop()
+	sfx_can_play = true
+
+func _on_walking_sfx_finished() -> void:
+	sfx_can_play = true
