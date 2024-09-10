@@ -1,10 +1,14 @@
-[gd_scene load_steps=20 format=4 uid="uid://7frb0sheglw3"]
+[gd_scene load_steps=24 format=4 uid="uid://7frb0sheglw3"]
 
 [ext_resource type="Script" path="res://Scripts/main_scene_2d.gd" id="1_7vwou"]
 [ext_resource type="Script" path="res://Scripts/health_manager.gd" id="2_8x07p"]
 [ext_resource type="Script" path="res://Scripts/resource_manager.gd" id="3_15sae"]
+[ext_resource type="Texture2D" uid="uid://gvrkqhc7rv6b" path="res://Sprites/wood_icon.png" id="3_d4cht"]
 [ext_resource type="Script" path="res://Scripts/player_controller_2d.gd" id="4_nyq4j"]
+[ext_resource type="Texture2D" uid="uid://dts2aeioapkbj" path="res://Sprites/stone_icon.png" id="4_o6c0e"]
 [ext_resource type="Texture2D" uid="uid://b8o74sgnfwflv" path="res://Sprites/Test/tilemap-characters_packed.png" id="5_jm5to"]
+[ext_resource type="Texture2D" uid="uid://epo4p8d5etx3" path="res://Sprites/grain_icon.png" id="5_ymr0d"]
+[ext_resource type="Texture2D" uid="uid://c6e2v6t8mpr66" path="res://Sprites/meat_icon.png" id="6_3ubol"]
 [ext_resource type="Texture2D" uid="uid://wb0bdyhd1kxa" path="res://Sprites/Test/texture_08.png" id="6_trbbs"]
 [ext_resource type="PackedScene" uid="uid://jgt5flob20ra" path="res://Scenes/tree.tscn" id="7_o345s"]
 [ext_resource type="PackedScene" uid="uid://ywrv2mhwrmti" path="res://Scenes/stone.tscn" id="8_ivbty"]
@@ -4161,42 +4165,74 @@ offset_bottom = 40.0
 [node name="WoodLabel" type="Label" parent="Hud/Control"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 6.0
-offset_top = 6.0
-offset_right = 69.0
-offset_bottom = 29.0
+offset_left = 58.0
+offset_top = 22.0
+offset_right = 121.0
+offset_bottom = 45.0
 text = "Wood: 0
 "
 
 [node name="StoneLabel" type="Label" parent="Hud/Control"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 6.0
-offset_top = 29.0
-offset_right = 69.0
-offset_bottom = 52.0
+offset_left = 58.0
+offset_top = 73.0
+offset_right = 121.0
+offset_bottom = 96.0
 text = "Stone: 0
 "
 
 [node name="GrainLabel" type="Label" parent="Hud/Control"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 6.0
-offset_top = 53.0
-offset_right = 69.0
-offset_bottom = 76.0
+offset_left = 58.0
+offset_top = 125.0
+offset_right = 121.0
+offset_bottom = 148.0
 text = "Grain: 0
 "
 
 [node name="MeatLabel" type="Label" parent="Hud/Control"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 6.0
-offset_top = 78.0
-offset_right = 69.0
-offset_bottom = 101.0
+offset_left = 58.0
+offset_top = 173.0
+offset_right = 121.0
+offset_bottom = 196.0
 text = "Meat: 0
 "
+
+[node name="WoodIcon" type="TextureRect" parent="Hud/Control"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("3_d4cht")
+
+[node name="StoneIcon" type="TextureRect" parent="Hud/Control"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 65.0
+offset_right = 50.0
+offset_bottom = 105.0
+texture = ExtResource("4_o6c0e")
+
+[node name="GrainIcon" type="TextureRect" parent="Hud/Control"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 115.0
+offset_right = 50.0
+offset_bottom = 155.0
+texture = ExtResource("5_ymr0d")
+
+[node name="MeatIcon" type="TextureRect" parent="Hud/Control"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 165.0
+offset_right = 50.0
+offset_bottom = 205.0
+texture = ExtResource("6_3ubol")
 
 [node name="HealthManager" type="Node" parent="."]
 unique_name_in_owner = true
