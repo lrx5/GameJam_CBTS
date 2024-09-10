@@ -1,13 +1,13 @@
 [gd_scene load_steps=15 format=3 uid="uid://cae2hm25cn43y"]
 
-[ext_resource type="Script" path="res://Scripts/main_scene_3d.gd" id="1_4o1tl"]
-[ext_resource type="Script" path="res://Scripts/player_controller_3d.gd" id="1_ju51v"]
+[ext_resource type="Script" path="res://Scripts/3D/main_scene_3d.gd" id="1_4o1tl"]
+[ext_resource type="Script" path="res://Scripts/3D/player_controller_3d.gd" id="1_ju51v"]
 [ext_resource type="Script" path="res://Scripts/health_manager.gd" id="2_4emdl"]
 [ext_resource type="Script" path="res://Scripts/resource_manager.gd" id="3_ujvyx"]
 [ext_resource type="Texture2D" uid="uid://b8o74sgnfwflv" path="res://Sprites/Test/tilemap-characters_packed.png" id="5_rj1ur"]
-[ext_resource type="PackedScene" uid="uid://codybtkdx66i5" path="res://Scenes/tree_3d.tscn" id="6_68dqr"]
-[ext_resource type="PackedScene" uid="uid://du505uiyh38tn" path="res://Scenes/stone_3d.tscn" id="7_nn68q"]
-[ext_resource type="PackedScene" uid="uid://dmje1w602j2ki" path="res://Scenes/grain_3d.tscn" id="8_ue3ie"]
+[ext_resource type="PackedScene" uid="uid://codybtkdx66i5" path="res://Scenes/3D/tree_3d.tscn" id="6_68dqr"]
+[ext_resource type="PackedScene" uid="uid://du505uiyh38tn" path="res://Scenes/3D/stone_3d.tscn" id="7_nn68q"]
+[ext_resource type="PackedScene" uid="uid://dmje1w602j2ki" path="res://Scenes/3D/grain_3d.tscn" id="8_ue3ie"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nkl0f"]
 

@@ -4,3 +4,6 @@ Collision Layer for Player, Mask for the latter;
 1 - for general objects
 9 - Resources
 17 - Interactables
+
+For Player's CameraFlash, 
+19 (Mask) - Camera Flash Area 2D, for the Animals its 19 (Collision)

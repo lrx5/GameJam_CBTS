@@ -1,10 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://codybtkdx66i5"]
+[gd_scene load_steps=9 format=3 uid="uid://du505uiyh38tn"]
 
-[ext_resource type="Script" path="res://Scripts/tree_3d.gd" id="1_iwkl0"]
-[ext_resource type="Texture2D" uid="uid://cfrv6pde4b7yv" path="res://Sprites/Test/Test_Tree.PNG" id="2_ul2bd"]
+[ext_resource type="Script" path="res://Scripts/3D/stone_3d.gd" id="1_4ox4m"]
+[ext_resource type="Texture2D" uid="uid://b11cb0cao1ady" path="res://Sprites/Test/Test_Rock.PNG" id="2_ryr50"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8yosv"]
-size = Vector3(0.101, 0.277344, 0.228046)
+[sub_resource type="BoxShape3D" id="BoxShape3D_yti3s"]
+size = Vector3(0.252489, 0.195313, 0.198496)
+
+[sub_resource type="Animation" id="Animation_lsk8x"]
+resource_name = "tree_hit_3d"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.0872665), Vector3(0, 0, 0.0872665), Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ih1lv"]
 length = 0.001
@@ -19,21 +34,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_0gog2"]
-resource_name = "grain_hit_3d"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.0872665), Vector3(0, 0, 0.0872665), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_g8gwc"]
@@ -51,8 +51,8 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0, -0.0872665), Vector3(0, 0, 0.0872665), Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_lsk8x"]
-resource_name = "tree_hit_3d"
+[sub_resource type="Animation" id="Animation_0gog2"]
+resource_name = "grain_hit_3d"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -74,19 +74,19 @@ _data = {
 "tree_hit_3d": SubResource("Animation_lsk8x")
 }
 
-[node name="Tree" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.790596)
+[node name="Stone" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07959, 2.98023e-08, -0.798731)
 collision_layer = 0
 collision_mask = 256
-script = ExtResource("1_iwkl0")
+script = ExtResource("1_4ox4m")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.17, 0, 0, 0, 0.154072, 0.0718451, 0, -0.0718451, 0.154072, 0, 0.347325, -0.125021)
-texture = ExtResource("2_ul2bd")
+transform = Transform3D(0.074, 0, 0, 0, 0.0670667, 0.0312737, 0, -0.0312738, 0.0670668, 0, 0.118301, -0.0403331)
+texture = ExtResource("2_ryr50")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.999996, 0, 0, 0, 0.999996, 0, 0, 0, 1, -0.011611, 0.138672, 0.00203812)
-shape = SubResource("BoxShape3D_8yosv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000760198, 0.0976564, -0.0391656)
+shape = SubResource("BoxShape3D_yti3s")
 
 [node name="PunchTimer" type="Timer" parent="."]
 

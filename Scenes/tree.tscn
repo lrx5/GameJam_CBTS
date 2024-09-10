@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://jgt5flob20ra"]
+[gd_scene load_steps=8 format=3 uid="uid://jgt5flob20ra"]
 
 [ext_resource type="Script" path="res://Scripts/tree_2d.gd" id="1_y86gr"]
 [ext_resource type="Texture2D" uid="uid://cfrv6pde4b7yv" path="res://Sprites/Test/Test_Tree.PNG" id="2_bm6hn"]
+[ext_resource type="AudioStream" uid="uid://dw7ylfer3a3le" path="res://Audio/wood_hit.wav" id="3_k3fvj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3lpv5"]
 size = Vector2(7, 27)
@@ -65,6 +66,9 @@ libraries = {
 "": SubResource("AnimationLibrary_nfxld")
 }
 speed_scale = 4.0
+
+[node name="TreeHitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_k3fvj")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

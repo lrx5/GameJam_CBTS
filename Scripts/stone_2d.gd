@@ -6,6 +6,7 @@ var can_collect= true
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var punch_timer: Timer = $PunchTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var stone_hit_sfx: AudioStreamPlayer2D = $StoneHitSFX
 
 func _ready() -> void:
 	set_process(false)
@@ -40,3 +41,4 @@ func _on_punch_timer_timeout() -> void:
 func stone_hit():
 	animation_player.play("stone_hit")
 	stone_hp -= 1
+	stone_hit_sfx.play()

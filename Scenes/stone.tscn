@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ywrv2mhwrmti"]
+[gd_scene load_steps=9 format=3 uid="uid://ywrv2mhwrmti"]
 
 [ext_resource type="Script" path="res://Scripts/stone_2d.gd" id="1_ff1r1"]
 [ext_resource type="Texture2D" uid="uid://b11cb0cao1ady" path="res://Sprites/Test/Test_Rock.PNG" id="2_u61no"]
+[ext_resource type="AudioStream" uid="uid://d3bsskllpcbfo" path="res://Audio/stone_hit.wav" id="3_4cvwm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8h2g"]
 size = Vector2(25, 19)
@@ -81,6 +82,9 @@ libraries = {
 "": SubResource("AnimationLibrary_yksgk")
 }
 speed_scale = 4.0
+
+[node name="StoneHitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4cvwm")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

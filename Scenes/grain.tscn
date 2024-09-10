@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2w34hxceguif"]
+[gd_scene load_steps=9 format=3 uid="uid://b2w34hxceguif"]
 
 [ext_resource type="Script" path="res://Scripts/grain_2d.gd" id="1_ggy1n"]
 [ext_resource type="Texture2D" uid="uid://ryoyh4w8utd2" path="res://Sprites/Test/Test_Grain.png" id="2_bxeok"]
+[ext_resource type="AudioStream" uid="uid://b0utt3jgdstgr" path="res://Audio/grain_hit.wav" id="3_f4h5i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rijia"]
 size = Vector2(14, 12)
@@ -81,6 +82,9 @@ libraries = {
 "": SubResource("AnimationLibrary_yksgk")
 }
 speed_scale = 4.0
+
+[node name="GrainHitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_f4h5i")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
