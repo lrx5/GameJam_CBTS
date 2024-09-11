@@ -17,7 +17,7 @@ func _ready() -> void:
 	update_stone_label()
 	update_grain_label()
 
-# Change Resource Values
+# Change Resource Valuesdw
 func increase_wood(amount: int) -> void:
 	wood += amount
 	update_wood_label()
@@ -30,8 +30,23 @@ func increase_grain(amount: int) -> void:
 
 # Update the label text with the current wood amount
 func update_wood_label() -> void:
-	wood_label.text = "Wood: " + str(wood)
+	if wood < 10:
+		wood_label.text = "00" + str(wood)
+	elif wood < 100:
+		wood_label.text = "0" + str(wood)
+	else:
+		wood_label.text = str(wood)
 func update_stone_label() -> void:
-	stone_label.text = "Stone: " + str(stone)
+	if stone < 10:
+		stone_label.text = "00" + str(stone)
+	elif wood < 100:
+		stone_label.text = "0" + str(stone)
+	else:
+		stone_label.text = str(stone)
 func update_grain_label() -> void:
-	grain_label.text = "Grain: " + str(grain)
+	if grain < 10:
+		grain_label.text = "00" + str(grain)
+	elif grain < 100:
+		grain_label.text = "0" + str(grain)
+	else:
+		grain_label.text = str(grain)
