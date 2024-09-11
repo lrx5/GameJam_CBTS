@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://epo4p8d5etx3"
-path="res://.godot/imported/grain_icon.png-6c2aa308cd2d250c5fce288854a63f78.ctex"
+uid="uid://cllc8275hamq1"
+path="res://.godot/imported/Noah.png-9a702a9e50e294e6478b26112ac4f42a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/grain_icon.png"
-dest_files=["res://.godot/imported/grain_icon.png-6c2aa308cd2d250c5fce288854a63f78.ctex"]
+source_file="res://Sprites/Player/Noah.png"
+dest_files=["res://.godot/imported/Noah.png-9a702a9e50e294e6478b26112ac4f42a.ctex"]
 
 [params]
 
