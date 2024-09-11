@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbwdrcqbwdxqp"]
+
+[ext_resource type="Script" path="res://Scripts/camera_beam.gd" id="1_70hx1"]
+[ext_resource type="Texture2D" uid="uid://slac025ntewi" path="res://Sprites/Test/Test_projectile.png" id="2_l66nm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnoph"]
+size = Vector2(23, 8)
+
+[node name="CameraBeam" type="Area2D"]
+position = Vector2(194, 152)
+script = ExtResource("1_70hx1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, -2.38419e-07)
+scale = Vector2(0.113014, 0.113014)
+texture = ExtResource("2_l66nm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fnoph")

@@ -16,8 +16,8 @@ extends Node2D
 @onready var chicken_spawn_shape: CollisionShape2D = $ChickenSpawnArea/CollisionShape2D
 
 # Number of Resource Spawns
-@export var tree_count: int = 10  # Number of trees to spawn
-@export var stone_count: int = 10  # Number of stone to spawn
+@export var tree_count: int = 50 # Number of trees to spawn
+@export var stone_count: int = 30  # Number of stone to spawn
 
 # Number of Animal Spawns
 @export var chicken_count: int = 10  # Number of stone to spawn

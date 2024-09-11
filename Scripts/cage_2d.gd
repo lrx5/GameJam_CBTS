@@ -1,17 +1,17 @@
 extends Area2D
 
-#
+# Cage Cost
 const WOOD_COST = 20
 const STONE_COST = 20
 var is_built = false
 @onready var player = get_node("/root/MainScene/Player")
 @onready var rm = get_node("/root/MainScene/ResourceManager")
 @onready var sprite_2d: Sprite2D = $Sprite2D
-var unbuilt_cage = preload("res://Sprites/Test/Test_Cage_Unbuilt.PNG")
-var built_cage = preload("res://Sprites/Cage.png")
+@onready var cage_label: Label = $CageLabel
 
 func _ready() -> void:
-	sprite_2d.texture = unbuilt_cage
+	cage_label.visible = false
+	sprite_2d.visible = false
 	set_process(false)
 
 func _process(_delta: float) -> void:
@@ -20,22 +20,21 @@ func _process(_delta: float) -> void:
 			rm.increase_wood(-20)
 			rm.increase_stone(-20)
 			build_cage()
+			cage_label.visible = false
 	if is_built == true:
-		sprite_2d.texture = built_cage
+		sprite_2d.visible = true
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.name == "Player":
-		@warning_ignore("narrowing_conversion")
-		self_modulate(0.5)
 		set_process(true)
+	if is_built == false:
+		cage_label.visible = true
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D and body.name == "Player":
-		self_modulate(1)
 		set_process(false)
-
-func self_modulate(value: float):
-	sprite_2d.modulate.r = value
+	if is_built == false:
+		cage_label.visible = false
 
 func build_cage():
 	is_built = true

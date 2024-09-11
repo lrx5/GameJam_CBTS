@@ -4,6 +4,7 @@ const SPEED = 130.0
 var sfx_can_play = true
 var can_flash = true
 var can_capture = true
+@onready var camera_beam_scene = preload("res://Scenes/camera_beam.tscn")
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var walking_sfx: AudioStreamPlayer2D = $WalkingSFX
 @onready var flash_camera_sfx: AudioStreamPlayer2D = $FlashCameraSFX
@@ -14,7 +15,7 @@ var can_capture = true
 @onready var flash_sprite_timer: Timer = $CameraFlashArea/FlashSpriteTimer
 @onready var camera_flash_area: Area2D = $CameraFlashArea
 @onready var flashing: Timer = $Flashing
-
+var facing_direction = Vector2.RIGHT
 
 func _physics_process(_delta: float) -> void:
 	
@@ -31,14 +32,18 @@ func _physics_process(_delta: float) -> void:
 	if input_vector.x > 0:
 		player_sprite.flip_h = true
 		camera_flash_area.rotation_degrees = 0  # CameraFlash Facing Right
+		facing_direction = Vector2.RIGHT
 	# If Facing Left
 	if input_vector.x < 0:
 		player_sprite.flip_h = false
 		camera_flash_area.rotation_degrees = 180  # CameraFlash Facing Left
+		facing_direction = Vector2.LEFT
 	if input_vector.y > 0:
 		camera_flash_area.rotation_degrees = 90 # CameraFlash Facing Down
+		facing_direction = Vector2.DOWN
 	if input_vector.y < 0:
 		camera_flash_area.rotation_degrees = -90 # CameraFlash Facing Up
+		facing_direction = Vector2.UP
 	if input_vector.x != 0 or input_vector.y != 0:
 		player_sprite.play("default")
 		if sfx_can_play:
@@ -55,6 +60,7 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("Capture"):
 		if can_capture:
 			capture_camera_sfx.play()
+			fire_camera_beam()
 			can_capture = false
 			capture_timer.start()
 	# Handle Flash
@@ -92,3 +98,13 @@ func _on_flash_sprite_timer_timeout() -> void:
 	flash_sprite.visible = false
 func _on_flashing_timeout() -> void:
 	State.flashing = false
+
+func fire_camera_beam():
+	# Instance the projectile
+	var projectile = camera_beam_scene.instantiate()
+	# Set the position of the projectile to the player's current position
+	projectile.position = position
+	# Set projectile's velocity or movement direction based on the player's facing direction
+	projectile.set_direction(facing_direction)
+	# Add projectile to the scene tree
+	get_parent().add_child(projectile)
