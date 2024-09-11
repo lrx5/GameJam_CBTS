@@ -1,0 +1,132 @@
+[gd_scene load_steps=11 format=3 uid="uid://bjlsfn3064wle"]
+
+[ext_resource type="Script" path="res://Scripts/chicken.gd" id="1_8pq21"]
+[ext_resource type="Texture2D" uid="uid://b8oonxxo10kr7" path="res://Sprites/Test/Test_Chicken.png" id="2_fm0y8"]
+[ext_resource type="Texture2D" uid="uid://3bvmqgq1jvoh" path="res://Sprites/stun_icon.png" id="3_21dpb"]
+[ext_resource type="AudioStream" uid="uid://b0utt3jgdstgr" path="res://Audio/grain_hit.wav" id="3_aq71f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rijia"]
+size = Vector2(14, 12)
+
+[sub_resource type="Animation" id="Animation_o5cmf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StunSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_isq61"]
+resource_name = "grain_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_s0b3a"]
+resource_name = "stone_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jokgr"]
+resource_name = "stun_rotate"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StunSprite:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yksgk"]
+_data = {
+"RESET": SubResource("Animation_o5cmf"),
+"grain_hit": SubResource("Animation_isq61"),
+"stone_hit": SubResource("Animation_s0b3a"),
+"stun_rotate": SubResource("Animation_jokgr")
+}
+
+[node name="Chicken" type="Area2D"]
+z_index = -1
+position = Vector2(-183, 70)
+collision_layer = 0
+collision_mask = 262144
+script = ExtResource("1_8pq21")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.09944e-06, -7)
+scale = Vector2(0.0541237, 0.0541237)
+texture = ExtResource("2_fm0y8")
+
+[node name="StunSprite" type="Sprite2D" parent="."]
+position = Vector2(1.07288e-06, -24)
+scale = Vector2(0.0252525, 0.0252525)
+texture = ExtResource("3_21dpb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_rijia")
+
+[node name="StunTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Reload" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yksgk")
+}
+
+[node name="ChickenSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_aq71f")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
+[connection signal="timeout" from="Reload" to="." method="_on_stun_timer_timeout"]

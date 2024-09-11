@@ -13,6 +13,7 @@ var can_capture = true
 @onready var flash_sprite: Sprite2D = $CameraFlashArea/FlashSprite
 @onready var flash_sprite_timer: Timer = $CameraFlashArea/FlashSpriteTimer
 @onready var camera_flash_area: Area2D = $CameraFlashArea
+@onready var flashing: Timer = $Flashing
 
 
 func _physics_process(_delta: float) -> void:
@@ -58,13 +59,15 @@ func _physics_process(_delta: float) -> void:
 			capture_timer.start()
 	# Handle Flash
 	if Input.is_action_pressed("Flash"):
-		if can_flash:
+		if State.can_flash:
 			flash_camera_sfx.play()
 			flash_sprite.visible = true
 			can_flash = false
+			State.can_flash = false
+			State.flashing = true
+			flashing.start()
 			flash_timer.start()
 			flash_sprite_timer.start()
-			flash_attack()
 
 	# Apply the movement
 	velocity = input_vector * SPEED
@@ -82,14 +85,10 @@ func _on_walking_sfx_finished() -> void:
 	sfx_can_play = true
 func _on_flash_timer_timeout() -> void:
 	can_flash = true
+	State.can_flash = true
 func _on_capture_timer_timeout() -> void:
 	can_capture = true
 func _on_flash_sprite_timer_timeout() -> void:
 	flash_sprite.visible = false
-func flash_attack():
-	var overlapping_bodies = camera_flash_area.get_overlapping_bodies()
-	# Loop through the bodies and check if they are enemies with the correct collision mask
-	for body in overlapping_bodies:
-		if body.collision_mask == 19:
-			print("Hit:", body.name)
-			body.take_damage(10)
+func _on_flashing_timeout() -> void:
+	State.flashing = false
