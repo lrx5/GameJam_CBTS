@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://7frb0sheglw3"]
+[gd_scene load_steps=35 format=4 uid="uid://7frb0sheglw3"]
 
 [ext_resource type="Script" path="res://Scripts/main_scene_2d.gd" id="1_7vwou"]
 [ext_resource type="Script" path="res://Scripts/health_manager.gd" id="2_8x07p"]
@@ -21,8 +21,6 @@
 [ext_resource type="AudioStream" uid="uid://2yavymnnhqwy" path="res://Audio/flash_camera.wav" id="12_obm2s"]
 [ext_resource type="AudioStream" uid="uid://brkep2dq7ecd8" path="res://Audio/capture_camera.wav" id="13_jtkhv"]
 [ext_resource type="Texture2D" uid="uid://bca0bulw1jcd4" path="res://Sprites/flash_sprite.png" id="16_a8ccy"]
-[ext_resource type="Texture2D" uid="uid://b8oonxxo10kr7" path="res://Sprites/Test/Test_Chicken.png" id="22_2ydhq"]
-[ext_resource type="Script" path="res://Scripts/chicken.gd" id="22_f4a3p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixr36"]
 texture = ExtResource("8_6okxe")
@@ -4262,11 +4260,11 @@ points = PackedVector2Array(0, 20, 90, 50, 90, -50, 0, -20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gpup"]
 size = Vector2(519, 287)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmisk"]
+size = Vector2(195.5, 157.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcwhy"]
 size = Vector2(44, 40)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ob82"]
-size = Vector2(263.05, 210.44)
 
 [node name="MainScene" type="Node2D"]
 y_sort_enabled = true
@@ -4375,7 +4373,7 @@ tile_set = SubResource("TileSet_mp6da")
 metadata/_edit_lock_ = true
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(-96, 74)
+position = Vector2(166, 149)
 collision_layer = 65793
 motion_mode = 1
 script = ExtResource("4_nyq4j")
@@ -4406,8 +4404,10 @@ pitch_scale = 2.0
 
 [node name="FlashTimer" type="Timer" parent="Player"]
 wait_time = 2.0
+one_shot = true
 
 [node name="CaptureTimer" type="Timer" parent="Player"]
+one_shot = true
 
 [node name="CameraFlashArea" type="Area2D" parent="Player"]
 collision_layer = 262144
@@ -4425,6 +4425,10 @@ texture = ExtResource("16_a8ccy")
 [node name="FlashSpriteTimer" type="Timer" parent="Player/CameraFlashArea"]
 wait_time = 0.5
 
+[node name="Flashing" type="Timer" parent="Player"]
+wait_time = 0.1
+one_shot = true
+
 [node name="TreeSpawnArea" type="Area2D" parent="."]
 position = Vector2(260, -149)
 
@@ -4436,6 +4440,12 @@ position = Vector2(260, 369)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StoneSpawnArea"]
 shape = SubResource("RectangleShape2D_4gpup")
+
+[node name="ChickenSpawnArea" type="Area2D" parent="."]
+position = Vector2(-34, 98)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChickenSpawnArea"]
+shape = SubResource("RectangleShape2D_nmisk")
 
 [node name="Tree" parent="." instance=ExtResource("7_o345s")]
 position = Vector2(186, 93)
@@ -4460,25 +4470,10 @@ texture = ExtResource("10_p87re")
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_mcwhy")
 
-[node name="Chicken" type="CharacterBody2D" parent="."]
-position = Vector2(-44, 77)
-scale = Vector2(0.0380155, 0.0380155)
-collision_layer = 0
-collision_mask = 262144
-script = ExtResource("22_f4a3p")
-
-[node name="ChickenSprite" type="Sprite2D" parent="Chicken"]
-scale = Vector2(1, 1)
-texture = ExtResource("22_2ydhq")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Chicken"]
-position = Vector2(0.00012207, 26.3049)
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_7ob82")
-
 [connection signal="finished" from="Player/WalkingSFX" to="Player" method="_on_walking_sfx_finished"]
 [connection signal="timeout" from="Player/FlashTimer" to="Player" method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="Player/CaptureTimer" to="Player" method="_on_capture_timer_timeout"]
 [connection signal="timeout" from="Player/CameraFlashArea/FlashSpriteTimer" to="Player" method="_on_flash_sprite_timer_timeout"]
+[connection signal="timeout" from="Player/Flashing" to="Player" method="_on_flashing_timeout"]
 [connection signal="body_entered" from="Cage" to="Cage" method="_on_body_entered"]
 [connection signal="body_exited" from="Cage" to="Cage" method="_on_body_exited"]
