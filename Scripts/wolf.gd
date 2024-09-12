@@ -45,7 +45,7 @@ func self_modulate(value: float):
 func _on_area_entered(area: Area2D) -> void:
 	if area is Area2D and area.name == "CameraBeam":
 		area.queue_free()
-		rm.capture_animal("Chicken")
+		rm.capture_animal("Wolf")
 		queue_free()
 	if area is Area2D and area.name == "CameraFlashArea":
 		@warning_ignore("narrowing_conversion")

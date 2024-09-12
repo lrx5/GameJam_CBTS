@@ -4,6 +4,7 @@ const SPEED = 130.0
 var sfx_can_play = true
 var can_flash = true
 var can_capture = true
+var slots_available = true
 @onready var camera_beam_scene = preload("res://Scenes/camera_beam.tscn")
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var walking_sfx: AudioStreamPlayer2D = $WalkingSFX
@@ -57,7 +58,7 @@ func _physics_process(_delta: float) -> void:
 		# Put Punching Animation Here to Play
 		pass
 	# Handle Capture
-	if Input.is_action_pressed("Capture"):
+	if Input.is_action_pressed("Capture") and slots_available:
 		if can_capture:
 			capture_camera_sfx.play()
 			fire_camera_beam()

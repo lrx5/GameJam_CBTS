@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjlsfn3064wle"]
+[gd_scene load_steps=10 format=3 uid="uid://dt0eepqixs2nj"]
 
-[ext_resource type="Script" path="res://Scripts/chicken.gd" id="1_8pq21"]
-[ext_resource type="Texture2D" uid="uid://b8oonxxo10kr7" path="res://Sprites/Test/Test_Chicken.png" id="2_fm0y8"]
-[ext_resource type="Texture2D" uid="uid://3bvmqgq1jvoh" path="res://Sprites/stun_icon.png" id="3_21dpb"]
-[ext_resource type="AudioStream" uid="uid://b0utt3jgdstgr" path="res://Audio/grain_hit.wav" id="3_aq71f"]
+[ext_resource type="Script" path="res://Scripts/lion.gd" id="1_juoom"]
+[ext_resource type="Texture2D" uid="uid://dbbaroe2xn5cn" path="res://Sprites/Test/Test_Lion.PNG" id="2_eri7c"]
+[ext_resource type="Texture2D" uid="uid://3bvmqgq1jvoh" path="res://Sprites/stun_icon.png" id="3_0ok88"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rijia"]
 size = Vector2(14, 16)
@@ -89,22 +88,22 @@ _data = {
 "stun_rotate": SubResource("Animation_jokgr")
 }
 
-[node name="Chicken" type="Area2D"]
+[node name="Lion" type="Area2D"]
 z_index = -1
 position = Vector2(-183, 70)
 collision_layer = 2097152
 collision_mask = 1310720
-script = ExtResource("1_8pq21")
+script = ExtResource("1_juoom")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3.09944e-06, -7)
 scale = Vector2(0.0541237, 0.0541237)
-texture = ExtResource("2_fm0y8")
+texture = ExtResource("2_eri7c")
 
 [node name="StunSprite" type="Sprite2D" parent="."]
 position = Vector2(1.07288e-06, -24)
 scale = Vector2(0.0252525, 0.0252525)
-texture = ExtResource("3_21dpb")
+texture = ExtResource("3_0ok88")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
@@ -123,8 +122,7 @@ libraries = {
 "": SubResource("AnimationLibrary_yksgk")
 }
 
-[node name="ChickenSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_aq71f")
+[node name="LionSFX" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

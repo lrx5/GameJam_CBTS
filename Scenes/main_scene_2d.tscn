@@ -1,10 +1,11 @@
-[gd_scene load_steps=36 format=4 uid="uid://7frb0sheglw3"]
+[gd_scene load_steps=42 format=4 uid="uid://7frb0sheglw3"]
 
 [ext_resource type="Script" path="res://Scripts/main_scene_2d.gd" id="1_7vwou"]
 [ext_resource type="Script" path="res://Scripts/health_manager.gd" id="2_8x07p"]
 [ext_resource type="Texture2D" uid="uid://e12153po4shk" path="res://Sprites/icons.png" id="2_aiu8v"]
 [ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Font/Joystix/joystix monospace.otf" id="2_pp2l0"]
 [ext_resource type="Script" path="res://Scripts/resource_manager.gd" id="3_15sae"]
+[ext_resource type="Texture2D" uid="uid://dpmg0d0636m7i" path="res://Sprites/portrait.png" id="4_gi2qb"]
 [ext_resource type="Script" path="res://Scripts/player_controller_2d.gd" id="4_nyq4j"]
 [ext_resource type="Texture2D" uid="uid://wb0bdyhd1kxa" path="res://Sprites/Test/texture_08.png" id="6_trbbs"]
 [ext_resource type="Texture2D" uid="uid://bqgf6fky5tuay" path="res://Sprites/Tileset/grass_tileset.png" id="7_n7kwr"]
@@ -15,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://d4now0v8ujyhj" path="res://Audio/walking.wav" id="11_5i24b"]
 [ext_resource type="AudioStream" uid="uid://2yavymnnhqwy" path="res://Audio/flash_camera.wav" id="12_obm2s"]
 [ext_resource type="AudioStream" uid="uid://brkep2dq7ecd8" path="res://Audio/capture_camera.wav" id="13_jtkhv"]
+[ext_resource type="Script" path="res://Scripts/beam_falloff.gd" id="15_yqg5b"]
 [ext_resource type="Texture2D" uid="uid://bca0bulw1jcd4" path="res://Sprites/flash_sprite.png" id="16_a8ccy"]
 [ext_resource type="PackedScene" uid="uid://8cntvv44ef8i" path="res://Scenes/cage.tscn" id="17_0uv7t"]
 
@@ -4708,6 +4710,9 @@ height = 18.0
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_3xw8e"]
 points = PackedVector2Array(0, 20, 90, 50, 90, -50, 0, -20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6sas"]
+size = Vector2(308, 7)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1rw1"]
 size = Vector2(1751, 374.25)
 
@@ -4716,6 +4721,15 @@ size = Vector2(930.5, 362.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmisk"]
 size = Vector2(1418.69, 250.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bt3s6"]
+size = Vector2(809.345, 376)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_queua"]
+size = Vector2(527.672, 499)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iih3b"]
+size = Vector2(813, 331)
 
 [node name="MainScene" type="Node2D"]
 y_sort_enabled = true
@@ -4809,6 +4823,102 @@ texture = SubResource("AtlasTexture_44sna")
 expand_mode = 1
 stretch_mode = 2
 
+[node name="PortraitOne" type="TextureRect" parent="Hud/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 123.0
+offset_top = 163.0
+offset_right = 135.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_gi2qb")
+expand_mode = 1
+
+[node name="AnimalOne" type="TextureRect" parent="Hud/Control/PortraitOne"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 10.0
+offset_bottom = 9.0
+expand_mode = 1
+
+[node name="PortraitTwo" type="TextureRect" parent="Hud/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 139.0
+offset_top = 163.0
+offset_right = 151.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_gi2qb")
+expand_mode = 1
+
+[node name="AnimalTwo" type="TextureRect" parent="Hud/Control/PortraitTwo"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 10.0
+offset_bottom = 9.0
+expand_mode = 1
+
+[node name="PortraitThree" type="TextureRect" parent="Hud/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 155.0
+offset_top = 163.0
+offset_right = 167.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_gi2qb")
+expand_mode = 1
+
+[node name="AnimalThree" type="TextureRect" parent="Hud/Control/PortraitThree"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 10.0
+offset_bottom = 9.0
+expand_mode = 1
+
+[node name="PortraitFour" type="TextureRect" parent="Hud/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 171.0
+offset_top = 163.0
+offset_right = 183.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_gi2qb")
+expand_mode = 1
+
+[node name="AnimalFour" type="TextureRect" parent="Hud/Control/PortraitFour"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 10.0
+offset_bottom = 9.0
+expand_mode = 1
+
 [node name="HealthManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_8x07p")
@@ -4893,6 +5003,30 @@ wait_time = 0.5
 wait_time = 0.1
 one_shot = true
 
+[node name="BeamFalloff" type="Area2D" parent="Player"]
+position = Vector2(0, -60)
+collision_layer = 2097152
+collision_mask = 1048576
+script = ExtResource("15_yqg5b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/BeamFalloff"]
+position = Vector2(-2, -6.5)
+shape = SubResource("RectangleShape2D_a6sas")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/BeamFalloff"]
+position = Vector2(-2, 129)
+shape = SubResource("RectangleShape2D_a6sas")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Player/BeamFalloff"]
+position = Vector2(-121, 56)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_a6sas")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Player/BeamFalloff"]
+position = Vector2(118, 56)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_a6sas")
+
 [node name="TreeSpawnArea" type="Area2D" parent="."]
 position = Vector2(-193, -155)
 
@@ -4913,6 +5047,34 @@ position = Vector2(-182, -164)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChickenSpawnArea"]
 position = Vector2(5, -1)
 shape = SubResource("RectangleShape2D_nmisk")
+
+[node name="WolfSpawnArea" type="Area2D" parent="."]
+position = Vector2(-664, -156)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WolfSpawnArea"]
+position = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_bt3s6")
+
+[node name="LionSpawnArea" type="Area2D" parent="."]
+position = Vector2(-411, 702)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LionSpawnArea"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_queua")
+
+[node name="CowSpawnArea" type="Area2D" parent="."]
+position = Vector2(629, 389)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CowSpawnArea"]
+position = Vector2(-127, 2)
+shape = SubResource("RectangleShape2D_iih3b")
+
+[node name="SheepSpawnArea" type="Area2D" parent="."]
+position = Vector2(436, -158)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SheepSpawnArea"]
+position = Vector2(-127, 2)
+shape = SubResource("RectangleShape2D_iih3b")
 
 [node name="Tree" parent="." instance=ExtResource("7_o345s")]
 position = Vector2(186, 93)
@@ -4937,3 +5099,4 @@ position = Vector2(377, 87)
 [connection signal="timeout" from="Player/CaptureTimer" to="Player" method="_on_capture_timer_timeout"]
 [connection signal="timeout" from="Player/CameraFlashArea/FlashSpriteTimer" to="Player" method="_on_flash_sprite_timer_timeout"]
 [connection signal="timeout" from="Player/Flashing" to="Player" method="_on_flashing_timeout"]
+[connection signal="area_entered" from="Player/BeamFalloff" to="Player/BeamFalloff" method="_on_area_entered"]

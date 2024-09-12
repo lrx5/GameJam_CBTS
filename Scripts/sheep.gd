@@ -15,7 +15,7 @@ var target_position: Vector2  # The next position to move to
 # Directions in the order: right, down, left, up
 var directions = [
 	Vector2(1, 0),  # Move right
-	Vector2(0, 1),  # Move down
+	Vector2(0, 1),  # Move downw
 	Vector2(-1, 0), # Move left
 	Vector2(0, -1)  # Move up
 ]
@@ -45,7 +45,7 @@ func self_modulate(value: float):
 func _on_area_entered(area: Area2D) -> void:
 	if area is Area2D and area.name == "CameraBeam":
 		area.queue_free()
-		rm.capture_animal("Chicken")
+		rm.capture_animal("Sheep")
 		queue_free()
 	if area is Area2D and area.name == "CameraFlashArea":
 		@warning_ignore("narrowing_conversion")

@@ -23,6 +23,9 @@ func _process(_delta: float) -> void:
 			cage_label.visible = false
 	if is_built == true:
 		sprite_2d.visible = true
+		if Input.is_action_pressed("Interact"):
+			#put animals here
+			pass
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.name == "Player":
