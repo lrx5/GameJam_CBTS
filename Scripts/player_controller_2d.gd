@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 130.0
+var speed = 80
 var sfx_can_play = true
 var can_flash = true
 var can_capture = true
@@ -77,7 +77,7 @@ func _physics_process(_delta: float) -> void:
 			flash_sprite_timer.start()
 
 	# Apply the movement
-	velocity = input_vector * SPEED
+	velocity = input_vector * speed
 	move_and_slide()
 
 func play_walking_sfx():

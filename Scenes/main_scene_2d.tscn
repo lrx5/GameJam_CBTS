@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://7frb0sheglw3"]
+[gd_scene load_steps=47 format=4 uid="uid://7frb0sheglw3"]
 
 [ext_resource type="Script" path="res://Scripts/main_scene_2d.gd" id="1_7vwou"]
 [ext_resource type="Script" path="res://Scripts/health_manager.gd" id="2_8x07p"]
@@ -7,7 +7,11 @@
 [ext_resource type="Script" path="res://Scripts/resource_manager.gd" id="3_15sae"]
 [ext_resource type="Texture2D" uid="uid://dpmg0d0636m7i" path="res://Sprites/portrait.png" id="4_gi2qb"]
 [ext_resource type="Script" path="res://Scripts/player_controller_2d.gd" id="4_nyq4j"]
+[ext_resource type="Texture2D" uid="uid://7r1652vwk30k" path="res://Sprites/button_square_depth_flat.png" id="5_0y8el"]
+[ext_resource type="Script" path="res://Scripts/upgrades.gd" id="5_qn1i2"]
+[ext_resource type="Texture2D" uid="uid://clkk6jtyj66dk" path="res://Sprites/button_square_flat.png" id="6_4ihsy"]
 [ext_resource type="Texture2D" uid="uid://wb0bdyhd1kxa" path="res://Sprites/Test/texture_08.png" id="6_trbbs"]
+[ext_resource type="Texture2D" uid="uid://cn6yc57ts2hma" path="res://Sprites/button_square_depth_flat_hover.png" id="7_ddgdm"]
 [ext_resource type="Texture2D" uid="uid://bqgf6fky5tuay" path="res://Sprites/Tileset/grass_tileset.png" id="7_n7kwr"]
 [ext_resource type="PackedScene" uid="uid://jgt5flob20ra" path="res://Scenes/tree.tscn" id="7_o345s"]
 [ext_resource type="PackedScene" uid="uid://ywrv2mhwrmti" path="res://Scenes/stone.tscn" id="8_ivbty"]
@@ -59,6 +63,10 @@ region = Rect2(22, 0, 12, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_44sna"]
 atlas = ExtResource("2_aiu8v")
 region = Rect2(34, 0, 9, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vory1"]
+font = ExtResource("2_pp2l0")
+font_size = 10
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n2y2y"]
 texture = ExtResource("6_trbbs")
@@ -4919,6 +4927,233 @@ offset_right = 10.0
 offset_bottom = 9.0
 expand_mode = 1
 
+[node name="Upgrades" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Upgrades"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 21.0
+offset_top = -2.0
+offset_right = 21.0
+offset_bottom = -2.0
+script = ExtResource("5_qn1i2")
+
+[node name="Label" type="Label" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 57.0
+offset_right = 166.0
+offset_bottom = 69.0
+text = "UPGRADES"
+label_settings = SubResource("LabelSettings_vory1")
+
+[node name="Label2" type="Label" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 77.0
+offset_right = 87.0
+offset_bottom = 89.0
+text = "RESOURCES"
+label_settings = SubResource("LabelSettings_vory1")
+
+[node name="Label3" type="Label" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 93.0
+offset_right = 70.0
+offset_bottom = 106.0
+text = "Punch"
+label_settings = SubResource("LabelSettings_vory1")
+
+[node name="Label4" type="Label" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 111.0
+offset_right = 83.0
+offset_bottom = 124.0
+text = "MOvement"
+label_settings = SubResource("LabelSettings_vory1")
+
+[node name="TextureButton" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 90.0
+offset_top = 75.0
+offset_right = 106.0
+offset_bottom = 91.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton2" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 107.0
+offset_top = 75.0
+offset_right = 123.0
+offset_bottom = 91.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton3" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 124.0
+offset_top = 75.0
+offset_right = 140.0
+offset_bottom = 91.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton4" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 141.0
+offset_top = 75.0
+offset_right = 157.0
+offset_bottom = 91.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton5" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 158.0
+offset_top = 75.0
+offset_right = 174.0
+offset_bottom = 91.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton6" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 90.0
+offset_top = 92.0
+offset_right = 106.0
+offset_bottom = 108.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton7" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 107.0
+offset_top = 92.0
+offset_right = 123.0
+offset_bottom = 108.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton8" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 124.0
+offset_top = 92.0
+offset_right = 140.0
+offset_bottom = 108.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton9" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 141.0
+offset_top = 92.0
+offset_right = 157.0
+offset_bottom = 108.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton10" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 158.0
+offset_top = 92.0
+offset_right = 174.0
+offset_bottom = 108.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton11" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 90.0
+offset_top = 109.0
+offset_right = 106.0
+offset_bottom = 125.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton12" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 107.0
+offset_top = 109.0
+offset_right = 123.0
+offset_bottom = 125.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton13" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 124.0
+offset_top = 109.0
+offset_right = 140.0
+offset_bottom = 125.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton14" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 141.0
+offset_top = 109.0
+offset_right = 157.0
+offset_bottom = 125.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton15" type="TextureButton" parent="Upgrades/Control"]
+layout_mode = 2
+offset_left = 158.0
+offset_top = 109.0
+offset_right = 174.0
+offset_bottom = 125.0
+texture_normal = ExtResource("5_0y8el")
+texture_hover = ExtResource("7_ddgdm")
+texture_disabled = ExtResource("6_4ihsy")
+ignore_texture_size = true
+stretch_mode = 0
+
 [node name="HealthManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_8x07p")
@@ -5094,6 +5329,21 @@ position = Vector2(297, 87)
 [node name="Cage4" parent="." instance=ExtResource("17_0uv7t")]
 position = Vector2(377, 87)
 
+[connection signal="pressed" from="Upgrades/Control/TextureButton" to="Upgrades/Control" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton2" to="Upgrades/Control" method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton3" to="Upgrades/Control" method="_on_texture_button_3_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton4" to="Upgrades/Control" method="_on_texture_button_4_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton5" to="Upgrades/Control" method="_on_texture_button_5_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton6" to="Upgrades/Control" method="_on_texture_button_6_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton7" to="Upgrades/Control" method="_on_texture_button_7_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton8" to="Upgrades/Control" method="_on_texture_button_8_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton9" to="Upgrades/Control" method="_on_texture_button_9_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton10" to="Upgrades/Control" method="_on_texture_button_10_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton11" to="Upgrades/Control" method="_on_texture_button_11_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton12" to="Upgrades/Control" method="_on_texture_button_12_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton13" to="Upgrades/Control" method="_on_texture_button_13_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton14" to="Upgrades/Control" method="_on_texture_button_14_pressed"]
+[connection signal="pressed" from="Upgrades/Control/TextureButton15" to="Upgrades/Control" method="_on_texture_button_15_pressed"]
 [connection signal="finished" from="Player/WalkingSFX" to="Player" method="_on_walking_sfx_finished"]
 [connection signal="timeout" from="Player/FlashTimer" to="Player" method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="Player/CaptureTimer" to="Player" method="_on_capture_timer_timeout"]

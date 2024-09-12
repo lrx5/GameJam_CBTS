@@ -17,8 +17,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if is_built == false:
 		if Input.is_action_pressed("Interact") and rm.wood >= WOOD_COST and rm.stone >= STONE_COST:
-			rm.increase_wood(-20)
-			rm.increase_stone(-20)
+			rm.decrease_wood(20)
+			rm.decrease_stone(20)
 			build_cage()
 			cage_label.visible = false
 	if is_built == true:

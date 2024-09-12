@@ -6,6 +6,12 @@ var stone = 0
 var grain = 0
 var meat = 0
 
+# Resource Multipliers
+var multiplier_wood = 1
+var multiplier_stone= 1
+var multiplier_grain = 1
+var multiplier_meat = 1
+
 # Portrait Slots
 var slot_1_empty = true
 var slot_2_empty = true
@@ -43,14 +49,24 @@ func _ready() -> void:
 
 # Change Resource Values
 func increase_wood(amount: int) -> void:
-	wood += amount
+	wood += amount * multiplier_wood
 	update_wood_label()
 func increase_stone(amount: int) -> void:
-	stone += amount
+	stone += amount * multiplier_stone
 	update_stone_label()
 func increase_grain(amount: int) -> void:
-	grain += amount
+	grain += amount * multiplier_grain
 	update_grain_label()
+func decrease_wood(amount: int) -> void:
+	wood -= amount 
+	update_wood_label()
+func decrease_stone(amount: int) -> void:
+	stone -= amount
+	update_stone_label()
+func decrease_grain(amount: int) -> void:
+	grain -= amount
+	update_grain_label()
+
 func capture_animal(animal: String) -> void:
 	if animal == "Chicken":
 		check_slots(animal)
