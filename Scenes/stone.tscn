@@ -76,6 +76,7 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_g8h2g")
 
 [node name="PunchTimer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

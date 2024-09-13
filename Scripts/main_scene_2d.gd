@@ -26,11 +26,13 @@ extends Node2D
 @onready var cow_spawn_shape: CollisionShape2D = $CowSpawnArea/CollisionShape2D
 @onready var sheep_spawn_area: Area2D = $SheepSpawnArea
 @onready var sheep_spawn_shape: CollisionShape2D = $SheepSpawnArea/CollisionShape2D
+@onready var grain_spawn_area: Area2D = $GrainSpawnArea
+@onready var grain_spawn_shape: CollisionShape2D = $GrainSpawnArea/CollisionShape2D
 
 # Number of Resource Spawns
-@export var tree_count: int = 50 
-@export var stone_count: int = 30 
-@export var grain_count: int = 60
+@export var tree_count: int = 60 
+@export var stone_count: int = 40 
+@export var grain_count: int = 120
 
 # Number of Animal Spawns
 @export var chicken_count: int = 10 
@@ -42,7 +44,7 @@ extends Node2D
 func _ready() -> void:
 	spawn_trees()
 	spawn_stones()
-	#spawn_grain()
+	spawn_grains()
 	spawn_chickens()
 	spawn_wolf()
 	spawn_lion()
@@ -79,6 +81,21 @@ func get_random_position_in_area_stones() -> Vector2:
 	var y = randf_range(-extents.y, extents.y)
 	# Offset by the spawn area’s position
 	return stone_spawn_area.position + Vector2(x, y)
+
+func spawn_grains():
+	for i in range(grain_count):
+		var grain_instance = grain_scene.instantiate()
+		grain_instance.position = get_random_position_in_area_grains() # Assign a random position
+		add_child(grain_instance)
+
+func get_random_position_in_area_grains() -> Vector2:
+	var shape = grain_spawn_shape.shape as RectangleShape2D # Assuming it's a rectangle
+	var extents = shape.extents
+	# Random position within the extents of the shape
+	var x = randf_range(-extents.x, extents.x)
+	var y = randf_range(-extents.y, extents.y)
+	# Offset by the spawn area’s position
+	return grain_spawn_area.position + Vector2(x, y)
 
 func spawn_chickens():
 	for i in range(chicken_count):

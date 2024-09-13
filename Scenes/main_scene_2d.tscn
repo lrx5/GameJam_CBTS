@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://7frb0sheglw3"]
+[gd_scene load_steps=49 format=4 uid="uid://7frb0sheglw3"]
 
 [ext_resource type="Script" path="res://Scripts/main_scene_2d.gd" id="1_7vwou"]
 [ext_resource type="Script" path="res://Scripts/health_manager.gd" id="2_8x07p"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://jgt5flob20ra" path="res://Scenes/tree.tscn" id="7_o345s"]
 [ext_resource type="PackedScene" uid="uid://ywrv2mhwrmti" path="res://Scenes/stone.tscn" id="8_ivbty"]
 [ext_resource type="PackedScene" uid="uid://b2w34hxceguif" path="res://Scenes/grain.tscn" id="9_p35ea"]
+[ext_resource type="Texture2D" uid="uid://cy4mukip6nbsd" path="res://Sprites/Test/Test_Lock.PNG" id="9_pfyjd"]
 [ext_resource type="Texture2D" uid="uid://cllc8275hamq1" path="res://Sprites/Player/Noah.png" id="10_56rdo"]
 [ext_resource type="AudioStream" uid="uid://d4now0v8ujyhj" path="res://Audio/walking.wav" id="11_5i24b"]
 [ext_resource type="AudioStream" uid="uid://2yavymnnhqwy" path="res://Audio/flash_camera.wav" id="12_obm2s"]
@@ -65,6 +66,10 @@ atlas = ExtResource("2_aiu8v")
 region = Rect2(34, 0, 9, 8)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vory1"]
+font = ExtResource("2_pp2l0")
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_xhc0o"]
 font = ExtResource("2_pp2l0")
 font_size = 10
 
@@ -4986,6 +4991,24 @@ texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton"]
+visible = false
+layout_mode = 0
+offset_left = 98.0
+offset_top = -1.0
+offset_right = 206.0
+offset_bottom = 101.0
+scale = Vector2(0.519999, 0.519999)
+text = "RESOURCES I
+
+UPGRADE COST:
+50 WOOD
+
+Wood per hit
+1 >>> 2"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
+
 [node name="TextureButton2" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
 offset_left = 107.0
@@ -4997,6 +5020,24 @@ texture_hover = ExtResource("7_ddgdm")
 texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton2"]
+visible = false
+layout_mode = 0
+offset_left = 81.0
+offset_top = -1.0
+offset_right = 189.0
+offset_bottom = 101.0
+scale = Vector2(0.519999, 0.519999)
+text = "RESOURCES II
+
+UPGRADE COST:
+50 STONE
+
+STONE per hit
+1 >>> 2"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
 
 [node name="TextureButton3" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
@@ -5010,6 +5051,24 @@ texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton3"]
+visible = false
+layout_mode = 0
+offset_left = 64.0
+offset_top = -1.0
+offset_right = 172.0
+offset_bottom = 101.0
+scale = Vector2(0.519999, 0.519999)
+text = "RESOURCES III
+
+UPGRADE COST:
+50 GRain
+
+GRAIN per hit
+1 >>> 2"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
+
 [node name="TextureButton4" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
 offset_left = 141.0
@@ -5021,6 +5080,24 @@ texture_hover = ExtResource("7_ddgdm")
 texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton4"]
+visible = false
+layout_mode = 0
+offset_left = 47.0
+offset_top = -1.0
+offset_right = 155.0
+offset_bottom = 101.0
+scale = Vector2(0.519999, 0.519999)
+text = "RESOURCES IV
+
+UPGRADE COST:
+50 MEAT
+
+MEAT per hit
+1 >>> 2"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
 
 [node name="TextureButton5" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
@@ -5034,6 +5111,27 @@ texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton5"]
+visible = false
+layout_mode = 0
+offset_left = 31.0
+offset_top = -15.0
+offset_right = 139.0
+offset_bottom = 132.0
+scale = Vector2(0.519999, 0.519999)
+text = "RESOURCES V
+
+UPGRADE COST:
+100 WOOD
+100 STONE
+100 GRAIN
+100 MEAT
+
+ALL PER HIT
+2 >>> 4"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
+
 [node name="TextureButton6" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
 offset_left = 90.0
@@ -5045,6 +5143,24 @@ texture_hover = ExtResource("7_ddgdm")
 texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton6"]
+visible = false
+layout_mode = 0
+offset_left = 99.0
+offset_top = -19.0
+offset_right = 207.0
+offset_bottom = 93.0
+scale = Vector2(0.519999, 0.519999)
+text = "PUNCH I
+
+UPGRADE COST:
+20 WOOD
+
+PUNCH TIME
+2.0s >>> 1.7s"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
 
 [node name="TextureButton7" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
@@ -5058,6 +5174,24 @@ texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton7"]
+visible = false
+layout_mode = 0
+offset_left = 82.0
+offset_top = -19.0
+offset_right = 190.0
+offset_bottom = 93.0
+scale = Vector2(0.519999, 0.519999)
+text = "PUNCH II
+
+UPGRADE COST:
+30 STONE
+
+PUNCH TIME
+1.7s >>> 1.4s"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
+
 [node name="TextureButton8" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
 offset_left = 124.0
@@ -5069,6 +5203,24 @@ texture_hover = ExtResource("7_ddgdm")
 texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton8"]
+visible = false
+layout_mode = 0
+offset_left = 65.0
+offset_top = -19.0
+offset_right = 173.0
+offset_bottom = 93.0
+scale = Vector2(0.519999, 0.519999)
+text = "PUNCH III
+
+UPGRADE COST:
+40 WOOD
+
+PUNCH TIME
+1.4s >>> 1.1s"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
 
 [node name="TextureButton9" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
@@ -5082,6 +5234,24 @@ texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton9"]
+visible = false
+layout_mode = 0
+offset_left = 48.0
+offset_top = -19.0
+offset_right = 156.0
+offset_bottom = 93.0
+scale = Vector2(0.519999, 0.519999)
+text = "PUNCH IV
+
+UPGRADE COST:
+60 STONE
+
+PUNCH TIME
+1.1s >>> 0.8s"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
+
 [node name="TextureButton10" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
 offset_left = 158.0
@@ -5093,6 +5263,25 @@ texture_hover = ExtResource("7_ddgdm")
 texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton10"]
+visible = false
+layout_mode = 0
+offset_left = 31.0
+offset_top = -19.0
+offset_right = 139.0
+offset_bottom = 93.0
+scale = Vector2(0.519999, 0.519999)
+text = "PUNCH V
+
+UPGRADE COST:
+80 WOOD
+80 STONE
+
+PUNCH TIME
+0.8s >>> 0.5s"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
 
 [node name="TextureButton11" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
@@ -5106,6 +5295,24 @@ texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton11"]
+visible = false
+layout_mode = 0
+offset_left = 99.0
+offset_top = -36.0
+offset_right = 207.0
+offset_bottom = 81.0
+scale = Vector2(0.519999, 0.519999)
+text = "MOVEMENT I
+
+UPGRADE COST:
+20 GRAIN
+
+SPEED
++0% >>> +10%"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
+
 [node name="TextureButton12" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
 offset_left = 107.0
@@ -5117,6 +5324,24 @@ texture_hover = ExtResource("7_ddgdm")
 texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton12"]
+visible = false
+layout_mode = 0
+offset_left = 82.0
+offset_top = -36.0
+offset_right = 190.0
+offset_bottom = 81.0
+scale = Vector2(0.519999, 0.519999)
+text = "MOVEMENT II
+
+UPGRADE COST:
+60 GRAIN
+
+SPEED
++10% >>> +20%"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
 
 [node name="TextureButton13" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
@@ -5130,6 +5355,24 @@ texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton13"]
+visible = false
+layout_mode = 0
+offset_left = 65.0
+offset_top = -36.0
+offset_right = 173.0
+offset_bottom = 81.0
+scale = Vector2(0.519999, 0.519999)
+text = "MOVEMENT III
+
+UPGRADE COST:
+120 GRAIN
+
+SPEED
++20% >>> +30%"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
+
 [node name="TextureButton14" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
 offset_left = 141.0
@@ -5142,6 +5385,24 @@ texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton14"]
+visible = false
+layout_mode = 0
+offset_left = 48.0
+offset_top = -36.0
+offset_right = 156.0
+offset_bottom = 81.0
+scale = Vector2(0.519999, 0.519999)
+text = "MOVEMENT IV
+
+UPGRADE COST:
+40 MEAT
+
+SPEED
++30% >>> +45%"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
+
 [node name="TextureButton15" type="TextureButton" parent="Upgrades/Control"]
 layout_mode = 2
 offset_left = 158.0
@@ -5153,6 +5414,145 @@ texture_hover = ExtResource("7_ddgdm")
 texture_disabled = ExtResource("6_4ihsy")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="Label" type="Label" parent="Upgrades/Control/TextureButton15"]
+visible = false
+layout_mode = 0
+offset_left = 31.0
+offset_top = -36.0
+offset_right = 139.0
+offset_bottom = 81.0
+scale = Vector2(0.519999, 0.519999)
+text = "MOVEMENT V
+
+UPGRADE COST:
+60 GRAIN
+60 MEAT
+
+SPEED
++45% >>> +60%"
+label_settings = SubResource("LabelSettings_xhc0o")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 78.0
+offset_right = 119.0
+offset_bottom = 86.0
+mouse_filter = 2
+texture = ExtResource("9_pfyjd")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 78.0
+offset_right = 136.0
+offset_bottom = 86.0
+mouse_filter = 2
+texture = ExtResource("9_pfyjd")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 78.0
+offset_right = 153.0
+offset_bottom = 86.0
+mouse_filter = 2
+texture = ExtResource("9_pfyjd")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 78.0
+offset_right = 170.0
+offset_bottom = 86.0
+mouse_filter = 2
+texture = ExtResource("9_pfyjd")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 95.0
+offset_right = 119.0
+offset_bottom = 103.0
+mouse_filter = 2
+texture = ExtResource("9_pfyjd")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 95.0
+offset_right = 136.0
+offset_bottom = 103.0
+mouse_filter = 2
+texture = ExtResource("9_pfyjd")
+expand_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 95.0
+offset_right = 153.0
+offset_bottom = 103.0
+mouse_filter = 2
+texture = ExtResource("9_pfyjd")
+expand_mode = 1
+
+[node name="TextureRect8" type="TextureRect" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 95.0
+offset_right = 170.0
+offset_bottom = 103.0
+mouse_filter = 2
+texture = ExtResource("9_pfyjd")
+expand_mode = 1
+
+[node name="TextureRect9" type="TextureRect" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 112.0
+offset_right = 119.0
+offset_bottom = 120.0
+mouse_filter = 2
+texture = ExtResource("9_pfyjd")
+expand_mode = 1
+
+[node name="TextureRect10" type="TextureRect" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 112.0
+offset_right = 136.0
+offset_bottom = 120.0
+mouse_filter = 2
+texture = ExtResource("9_pfyjd")
+expand_mode = 1
+
+[node name="TextureRect11" type="TextureRect" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 112.0
+offset_right = 153.0
+offset_bottom = 120.0
+mouse_filter = 2
+texture = ExtResource("9_pfyjd")
+expand_mode = 1
+
+[node name="TextureRect12" type="TextureRect" parent="Upgrades/Control"]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 112.0
+offset_right = 170.0
+offset_bottom = 120.0
+mouse_filter = 2
+texture = ExtResource("9_pfyjd")
+expand_mode = 1
 
 [node name="HealthManager" type="Node" parent="."]
 unique_name_in_owner = true
@@ -5276,6 +5676,13 @@ position = Vector2(-140, 405)
 position = Vector2(2, 1)
 shape = SubResource("RectangleShape2D_4gpup")
 
+[node name="GrainSpawnArea" type="Area2D" parent="."]
+position = Vector2(-140, 405)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrainSpawnArea"]
+position = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_4gpup")
+
 [node name="ChickenSpawnArea" type="Area2D" parent="."]
 position = Vector2(-182, -164)
 
@@ -5329,20 +5736,50 @@ position = Vector2(297, 87)
 [node name="Cage4" parent="." instance=ExtResource("17_0uv7t")]
 position = Vector2(377, 87)
 
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton" to="Upgrades/Control" method="_on_texture_button_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton" to="Upgrades/Control" method="_on_texture_button_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton" to="Upgrades/Control" method="_on_texture_button_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton2" to="Upgrades/Control" method="_on_texture_button_2_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton2" to="Upgrades/Control" method="_on_texture_button_2_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton2" to="Upgrades/Control" method="_on_texture_button_2_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton3" to="Upgrades/Control" method="_on_texture_button_3_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton3" to="Upgrades/Control" method="_on_texture_button_3_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton3" to="Upgrades/Control" method="_on_texture_button_3_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton4" to="Upgrades/Control" method="_on_texture_button_4_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton4" to="Upgrades/Control" method="_on_texture_button_4_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton4" to="Upgrades/Control" method="_on_texture_button_4_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton5" to="Upgrades/Control" method="_on_texture_button_5_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton5" to="Upgrades/Control" method="_on_texture_button_5_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton5" to="Upgrades/Control" method="_on_texture_button_5_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton6" to="Upgrades/Control" method="_on_texture_button_6_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton6" to="Upgrades/Control" method="_on_texture_button_6_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton6" to="Upgrades/Control" method="_on_texture_button_6_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton7" to="Upgrades/Control" method="_on_texture_button_7_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton7" to="Upgrades/Control" method="_on_texture_button_7_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton7" to="Upgrades/Control" method="_on_texture_button_7_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton8" to="Upgrades/Control" method="_on_texture_button_8_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton8" to="Upgrades/Control" method="_on_texture_button_8_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton8" to="Upgrades/Control" method="_on_texture_button_8_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton9" to="Upgrades/Control" method="_on_texture_button_9_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton9" to="Upgrades/Control" method="_on_texture_button_9_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton9" to="Upgrades/Control" method="_on_texture_button_9_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton10" to="Upgrades/Control" method="_on_texture_button_10_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton10" to="Upgrades/Control" method="_on_texture_button_10_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton10" to="Upgrades/Control" method="_on_texture_button_10_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton11" to="Upgrades/Control" method="_on_texture_button_11_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton11" to="Upgrades/Control" method="_on_texture_button_11_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton11" to="Upgrades/Control" method="_on_texture_button_11_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton12" to="Upgrades/Control" method="_on_texture_button_12_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton12" to="Upgrades/Control" method="_on_texture_button_12_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton12" to="Upgrades/Control" method="_on_texture_button_12_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton13" to="Upgrades/Control" method="_on_texture_button_13_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton13" to="Upgrades/Control" method="_on_texture_button_13_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton13" to="Upgrades/Control" method="_on_texture_button_13_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton14" to="Upgrades/Control" method="_on_texture_button_14_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton14" to="Upgrades/Control" method="_on_texture_button_14_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton14" to="Upgrades/Control" method="_on_texture_button_14_pressed"]
+[connection signal="mouse_entered" from="Upgrades/Control/TextureButton15" to="Upgrades/Control" method="_on_texture_button_15_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrades/Control/TextureButton15" to="Upgrades/Control" method="_on_texture_button_15_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton15" to="Upgrades/Control" method="_on_texture_button_15_pressed"]
 [connection signal="finished" from="Player/WalkingSFX" to="Player" method="_on_walking_sfx_finished"]
 [connection signal="timeout" from="Player/FlashTimer" to="Player" method="_on_flash_timer_timeout"]

@@ -60,6 +60,7 @@ position = Vector2(-1, -15)
 shape = SubResource("RectangleShape2D_3lpv5")
 
 [node name="PunchTimer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
