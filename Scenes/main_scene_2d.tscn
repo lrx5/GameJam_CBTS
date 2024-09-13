@@ -1,13 +1,15 @@
-[gd_scene load_steps=49 format=4 uid="uid://7frb0sheglw3"]
+[gd_scene load_steps=51 format=4 uid="uid://7frb0sheglw3"]
 
 [ext_resource type="Script" path="res://Scripts/main_scene_2d.gd" id="1_7vwou"]
 [ext_resource type="Script" path="res://Scripts/health_manager.gd" id="2_8x07p"]
 [ext_resource type="Texture2D" uid="uid://e12153po4shk" path="res://Sprites/icons.png" id="2_aiu8v"]
 [ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Font/Joystix/joystix monospace.otf" id="2_pp2l0"]
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="2_q8h2g"]
 [ext_resource type="Script" path="res://Scripts/resource_manager.gd" id="3_15sae"]
 [ext_resource type="Texture2D" uid="uid://dpmg0d0636m7i" path="res://Sprites/portrait.png" id="4_gi2qb"]
 [ext_resource type="Script" path="res://Scripts/player_controller_2d.gd" id="4_nyq4j"]
 [ext_resource type="Texture2D" uid="uid://7r1652vwk30k" path="res://Sprites/button_square_depth_flat.png" id="5_0y8el"]
+[ext_resource type="Texture2D" uid="uid://dumjxukh00uon" path="res://Sprites/delete.png" id="5_aa04j"]
 [ext_resource type="Script" path="res://Scripts/upgrades.gd" id="5_qn1i2"]
 [ext_resource type="Texture2D" uid="uid://clkk6jtyj66dk" path="res://Sprites/button_square_flat.png" id="6_4ihsy"]
 [ext_resource type="Texture2D" uid="uid://wb0bdyhd1kxa" path="res://Sprites/Test/texture_08.png" id="6_trbbs"]
@@ -4753,6 +4755,7 @@ script = ExtResource("1_7vwou")
 [node name="Control" type="Control" parent="Hud"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("2_q8h2g")
 
 [node name="WoodLabel" type="Label" parent="Hud/Control"]
 unique_name_in_owner = true
@@ -4931,6 +4934,46 @@ offset_top = 1.0
 offset_right = 10.0
 offset_bottom = 9.0
 expand_mode = 1
+
+[node name="Delete1" type="TextureButton" parent="Hud/Control"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 162.0
+offset_right = 148.0
+offset_bottom = 175.0
+scale = Vector2(0.20001, 0.20001)
+texture_normal = ExtResource("5_aa04j")
+ignore_texture_size = true
+
+[node name="Delete2" type="TextureButton" parent="Hud/Control"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 162.0
+offset_right = 164.0
+offset_bottom = 175.0
+scale = Vector2(0.20001, 0.20001)
+texture_normal = ExtResource("5_aa04j")
+ignore_texture_size = true
+
+[node name="Delete3" type="TextureButton" parent="Hud/Control"]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 162.0
+offset_right = 180.0
+offset_bottom = 175.0
+scale = Vector2(0.20001, 0.20001)
+texture_normal = ExtResource("5_aa04j")
+ignore_texture_size = true
+
+[node name="Delete4" type="TextureButton" parent="Hud/Control"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 162.0
+offset_right = 196.0
+offset_bottom = 175.0
+scale = Vector2(0.20001, 0.20001)
+texture_normal = ExtResource("5_aa04j")
+ignore_texture_size = true
 
 [node name="Upgrades" type="CanvasLayer" parent="."]
 
@@ -5736,6 +5779,10 @@ position = Vector2(297, 87)
 [node name="Cage4" parent="." instance=ExtResource("17_0uv7t")]
 position = Vector2(377, 87)
 
+[connection signal="pressed" from="Hud/Control/Delete1" to="Hud/Control" method="_on_delete_1_pressed"]
+[connection signal="pressed" from="Hud/Control/Delete2" to="Hud/Control" method="_on_delete_2_pressed"]
+[connection signal="pressed" from="Hud/Control/Delete3" to="Hud/Control" method="_on_delete_3_pressed"]
+[connection signal="pressed" from="Hud/Control/Delete4" to="Hud/Control" method="_on_delete_4_pressed"]
 [connection signal="mouse_entered" from="Upgrades/Control/TextureButton" to="Upgrades/Control" method="_on_texture_button_mouse_entered"]
 [connection signal="mouse_exited" from="Upgrades/Control/TextureButton" to="Upgrades/Control" method="_on_texture_button_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton" to="Upgrades/Control" method="_on_texture_button_pressed"]

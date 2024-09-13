@@ -80,6 +80,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Menu"):
 		upgrades.visible = !upgrades.visible
+		player.menu_open = !player.menu_open
 
 
 #------------- Resource Upgrades -------------#

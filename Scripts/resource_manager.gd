@@ -35,12 +35,16 @@ var lion_texture = preload("res://Sprites/Test/Test_Lion.PNG")
 var cow_texture = preload("res://Sprites/Test/Test_Cow.PNG")
 var sheep_texture = preload("res://Sprites/Test/Test_Sheep.PNG")
 
-# Access TextureRects
+# Access TextureRects & Delete Buttons
 @onready var player = get_node("/root/MainScene/Player")
 @onready var portrait_one = get_node("/root/MainScene/Hud/Control/PortraitOne/AnimalOne")
 @onready var portrait_two = get_node("/root/MainScene/Hud/Control/PortraitTwo/AnimalTwo")
 @onready var portrait_three = get_node("/root/MainScene/Hud/Control/PortraitThree/AnimalThree")
 @onready var portrait_four = get_node("/root/MainScene/Hud/Control/PortraitFour/AnimalFour")
+@onready var delete_1 = get_node("/root/MainScene/Hud/Control/Delete1")
+@onready var delete_2 = get_node("/root/MainScene/Hud/Control/Delete2")
+@onready var delete_3 = get_node("/root/MainScene/Hud/Control/Delete3")
+@onready var delete_4 = get_node("/root/MainScene/Hud/Control/Delete4")
 
 func _ready() -> void:
 	update_wood_label()
@@ -116,15 +120,19 @@ func check_slots(animal: String) -> void:
 		if slot_1_empty:
 			slot_1 = animal
 			slot_1_empty = false
+			delete_1.visible = true
 		elif slot_2_empty:
 			slot_2 = animal
 			slot_2_empty = false
+			delete_2.visible = true
 		elif slot_3_empty:
 			slot_3 = animal
 			slot_3_empty = false
+			delete_3.visible = true
 		elif slot_4_empty:
 			slot_4 = animal
 			slot_4_empty = false
+			delete_4.visible = true
 		if !slot_1_empty and !slot_2_empty and !slot_3_empty and !slot_4_empty:
 			player.slots_available = false
 		else:

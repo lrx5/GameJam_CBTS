@@ -5,6 +5,8 @@ var sfx_can_play = true
 var can_flash = true
 var can_capture = true
 var slots_available = true
+var menu_open = false
+
 @onready var camera_beam_scene = preload("res://Scenes/camera_beam.tscn")
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var walking_sfx: AudioStreamPlayer2D = $WalkingSFX
@@ -59,7 +61,7 @@ func _physics_process(_delta: float) -> void:
 		pass
 	# Handle Capture
 	if Input.is_action_pressed("Capture") and slots_available:
-		if can_capture:
+		if can_capture and !menu_open:
 			capture_camera_sfx.play()
 			fire_camera_beam()
 			can_capture = false
@@ -101,11 +103,7 @@ func _on_flashing_timeout() -> void:
 	State.flashing = false
 
 func fire_camera_beam():
-	# Instance the projectile
 	var projectile = camera_beam_scene.instantiate()
-	# Set the position of the projectile to the player's current position
 	projectile.position = position
-	# Set projectile's velocity or movement direction based on the player's facing direction
 	projectile.set_direction(facing_direction)
-	# Add projectile to the scene tree
 	get_parent().add_child(projectile)

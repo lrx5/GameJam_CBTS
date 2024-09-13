@@ -87,6 +87,7 @@ speed_scale = 4.0
 
 [node name="GrainHitSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_f4h5i")
+volume_db = -10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
