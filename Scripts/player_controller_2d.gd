@@ -6,6 +6,7 @@ var can_flash = true
 var can_capture = true
 var slots_available = true
 var menu_open = false
+var in_cage = false
 
 @onready var camera_beam_scene = preload("res://Scenes/camera_beam.tscn")
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -61,7 +62,7 @@ func _physics_process(_delta: float) -> void:
 		pass
 	# Handle Capture
 	if Input.is_action_pressed("Capture") and slots_available:
-		if can_capture and !menu_open:
+		if can_capture and !menu_open and in_cage == false:
 			capture_camera_sfx.play()
 			fire_camera_beam()
 			can_capture = false

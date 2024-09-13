@@ -119,7 +119,7 @@ func spawn_animal_in_cage(animal: String):
 		check_animal_type(_animal)
 		if !do_not_spawn:
 			var spawned_animal = animal_to_spawn.instantiate()
-			spawned_animal.position = global_position - Vector2(310, 151)
+			spawned_animal.position = global_position - Vector2(360+62, 151)
 			add_child(spawned_animal)
 			cage_1_free = false
 
@@ -127,7 +127,7 @@ func spawn_animal_in_cage(animal: String):
 		check_animal_type(_animal)
 		if !do_not_spawn:
 			var spawned_animal = animal_to_spawn.instantiate()
-			spawned_animal.position = global_position - Vector2(280, 151)
+			spawned_animal.position = global_position - Vector2(330+62, 151)
 			add_child(spawned_animal)
 			cage_2_free = false
 		
@@ -135,14 +135,14 @@ func spawn_animal_in_cage(animal: String):
 		check_animal_type(_animal)
 		if !do_not_spawn:
 			var spawned_animal = animal_to_spawn.instantiate()
-			spawned_animal.position = global_position - Vector2(310, 121)
+			spawned_animal.position = global_position - Vector2(360+62, 121)
 			add_child(spawned_animal)
 			cage_3_free = false
 	elif cage_4_free:
 		check_animal_type(_animal)
 		if !do_not_spawn:
 			var spawned_animal = animal_to_spawn.instantiate()
-			spawned_animal.position = global_position - Vector2(280, 121)
+			spawned_animal.position = global_position - Vector2(330+62, 121)
 			add_child(spawned_animal)
 			cage_4_free = false
 

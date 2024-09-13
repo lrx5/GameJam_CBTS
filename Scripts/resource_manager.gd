@@ -1,9 +1,9 @@
 extends Node
 
 # Starting Resource Values
-var wood = 0
-var stone = 0
-var grain = 0
+var wood = 100
+var stone = 100
+var grain = 100
 var meat = 0
 
 # Resource Multipliers
@@ -100,9 +100,9 @@ func update_wood_label() -> void:
 func update_stone_label() -> void:
 	if stone < 10:
 		stone_label.text = "00" + str(stone)
-	elif wood < 100:
+	elif stone < 100:
 		stone_label.text = "0" + str(stone)
-	elif wood > 999:
+	elif stone > 999:
 		stone_label.text = "999"
 	else:
 		stone_label.text = str(stone)
@@ -111,7 +111,7 @@ func update_grain_label() -> void:
 		grain_label.text = "00" + str(grain)
 	elif grain < 100:
 		grain_label.text = "0" + str(grain)
-	elif wood > 999:
+	elif grain > 999:
 		grain_label.text = "999"
 	else:
 		grain_label.text = str(grain)
@@ -137,6 +137,7 @@ func check_slots(animal: String) -> void:
 			player.slots_available = false
 		else:
 			player.slots_available = true
+
 func update_portrait_ui(animal: String) -> void:
 	# Portrait 1
 	if slot_1 == "Chicken":
