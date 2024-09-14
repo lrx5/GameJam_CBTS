@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://ywrv2mhwrmti"]
+[gd_scene load_steps=9 format=3 uid="uid://ywrv2mhwrmti"]
 
 [ext_resource type="Script" path="res://Scripts/stone_2d.gd" id="1_ff1r1"]
-[ext_resource type="Texture2D" uid="uid://be5ku087w73wx" path="res://Sprites/Stone_Sprite.png" id="2_mxb8i"]
+[ext_resource type="Texture2D" uid="uid://b11cb0cao1ady" path="res://Sprites/Test/Test_Rock.PNG" id="2_u61no"]
 [ext_resource type="AudioStream" uid="uid://d3bsskllpcbfo" path="res://Audio/stone_hit.wav" id="3_4cvwm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8h2g"]
@@ -59,29 +59,23 @@ _data = {
 "stone_hit": SubResource("Animation_s0b3a")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjtph"]
-size = Vector2(20, 10)
-
 [node name="Stone" type="Area2D"]
-z_as_relative = false
-y_sort_enabled = true
+z_index = -1
 position = Vector2(232, 94)
 collision_layer = 0
 collision_mask = 256
 script = ExtResource("1_ff1r1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_as_relative = false
-y_sort_enabled = true
 position = Vector2(-1.90735e-06, -11)
-texture = ExtResource("2_mxb8i")
+scale = Vector2(0.0736175, 0.0736175)
+texture = ExtResource("2_u61no")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_g8h2g")
 
 [node name="PunchTimer" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -92,14 +86,6 @@ speed_scale = 4.0
 
 [node name="StoneHitSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_4cvwm")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(0, -10)
-shape = SubResource("RectangleShape2D_vjtph")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

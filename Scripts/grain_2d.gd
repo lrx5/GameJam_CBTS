@@ -12,8 +12,6 @@ func _ready() -> void:
 	set_process(false)
 
 func _process(_delta: float) -> void:
-
-	punch_timer.wait_time = State.punch_timer
 	if grain_hp <= 0:
 		queue_free()
 

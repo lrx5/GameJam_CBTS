@@ -5,7 +5,7 @@ var can_flash = true
 @onready var stun_sprite: Sprite2D = $StunSprite
 @onready var stun_timer: Timer = $StunTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var rm = get_node("/root/MainScene/ResourceManager")
+
 # Movement Variables
 var move_speed = 50  # Speed of movement (units per second)
 var move_distance = 50  # Distance to move in each direction
@@ -43,15 +43,13 @@ func _physics_process(delta: float) -> void:
 func self_modulate(value: float):
 	sprite_2d.modulate.r = value
 func _on_area_entered(area: Area2D) -> void:
-	if area is Area2D and area.name == "CameraBeam":
-		area.queue_free()
-		rm.capture_animal("Chicken")
-		queue_free()
 	if area is Area2D and area.name == "CameraFlashArea":
 		@warning_ignore("narrowing_conversion")
+		self_modulate(0.5)
 		set_process(true)
 func _on_area_exited(area: Area2D) -> void:
 	if area is Area2D and area.name == "CameraFlashArea":
+		self_modulate(1)
 		set_process(false)
 
 func stun_flash():

@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://b0utt3jgdstgr" path="res://Audio/grain_hit.wav" id="3_aq71f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rijia"]
-size = Vector2(14, 16)
+size = Vector2(14, 12)
 
 [sub_resource type="Animation" id="Animation_o5cmf"]
 length = 0.001
@@ -91,11 +91,9 @@ _data = {
 
 [node name="Chicken" type="Area2D"]
 z_index = -1
-z_as_relative = false
-y_sort_enabled = true
 position = Vector2(-183, 70)
-collision_layer = 2097152
-collision_mask = 1310720
+collision_layer = 0
+collision_mask = 262144
 script = ExtResource("1_8pq21")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -109,7 +107,7 @@ scale = Vector2(0.0252525, 0.0252525)
 texture = ExtResource("3_21dpb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_rijia")
 
 [node name="StunTimer" type="Timer" parent="."]
