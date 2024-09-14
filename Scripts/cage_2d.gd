@@ -26,6 +26,7 @@ var do_not_spawn = false
 @onready var button2 = get_node("/root/MainScene/Hud/Control/Button2")
 @onready var button3 = get_node("/root/MainScene/Hud/Control/Button3")
 @onready var button4 = get_node("/root/MainScene/Hud/Control/Button4")
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
 	cage_label.visible = false
@@ -43,8 +44,6 @@ func _process(_delta: float) -> void:
 			rm.decrease_stone(50)
 			build_cage()
 			cage_label.visible = false
-	if is_built == true:
-		sprite_2d.visible = true
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.name == "Player":
@@ -66,7 +65,8 @@ func _on_body_exited(body: Node2D) -> void:
 
 func build_cage():
 	is_built = true
-
+	animated_sprite_2d.visible = true
+	animated_sprite_2d.play("default")
 
 func _on_button_pressed() -> void:
 	if in_cage and cage_is_not_full == true:

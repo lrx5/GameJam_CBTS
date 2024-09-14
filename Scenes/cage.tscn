@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://8cntvv44ef8i"]
 
 [ext_resource type="Script" path="res://Scripts/cage_2d.gd" id="1_nth7t"]
-[ext_resource type="Texture2D" uid="uid://7y6rnmo5p4dn" path="res://Sprites/Cage.png" id="2_kojv1"]
+[ext_resource type="Texture2D" uid="uid://dpvft581fghu" path="res://Sprites/Cage_Animation.png" id="2_j0mpg"]
 [ext_resource type="FontFile" uid="uid://oiwnoovbj02f" path="res://Font/Joystix/joystix monospace.otf" id="3_kopgj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcwhy"]
@@ -22,9 +22,10 @@ collision_mask = 65536
 script = ExtResource("1_nth7t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2.24545, -7.25743)
-scale = Vector2(0.825277, 0.825277)
-texture = ExtResource("2_kojv1")
+position = Vector2(-4.24545, -17.2574)
+texture = ExtResource("2_j0mpg")
+region_enabled = true
+region_rect = Rect2(989, 0, 117, 122)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 17)
