@@ -259,7 +259,12 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_wbl4f")
 autoplay = "default"
 
+[node name="PunchTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="Reload" to="." method="_on_stun_timer_timeout"]
+[connection signal="timeout" from="PunchTimer" to="." method="_on_punch_timer_timeout"]

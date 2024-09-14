@@ -35,11 +35,11 @@ extends Node2D
 @export var grain_count: int = 120
 
 # Number of Animal Spawns
-@export var chicken_count: int = 10 
-@export var wolf_count: int = 6 
-@export var lion_count: int = 6 
-@export var cow_count: int = 10
-@export var sheep_count: int = 10
+@export var chicken_count: int = 20 
+@export var wolf_count: int = 12 
+@export var lion_count: int = 12 
+@export var cow_count: int = 20
+@export var sheep_count: int = 20
 
 func _ready() -> void:
 	spawn_trees()
