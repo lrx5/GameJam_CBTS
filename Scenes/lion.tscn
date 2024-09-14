@@ -198,7 +198,6 @@ animations = [{
 }]
 
 [node name="Lion" type="Area2D"]
-z_index = -1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-183, 70)
@@ -238,18 +237,24 @@ libraries = {
 [node name="LionSFX" type="AudioStreamPlayer2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(-1, -12)
 sprite_frames = SubResource("SpriteFrames_vf0y2")
 autoplay = "default"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 visible = false
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_j0cst")
 autoplay = "default"
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
 visible = false
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(1, -8)
 sprite_frames = SubResource("SpriteFrames_atr3b")
 autoplay = "default"

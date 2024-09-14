@@ -7,6 +7,7 @@ var can_capture = true
 var slots_available = true
 var menu_open = false
 var in_cage = false
+var is_punching = false
 
 @onready var camera_beam_scene = preload("res://Scenes/camera_beam.tscn")
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -20,51 +21,62 @@ var in_cage = false
 @onready var camera_flash_area: Area2D = $CameraFlashArea
 @onready var flashing: Timer = $Flashing
 var facing_direction = Vector2.RIGHT
-
+var input_vector = Vector2.ZERO
 func _physics_process(_delta: float) -> void:
 	# Update player's position in the global state
 	State.player_position = global_position
-
-	var input_vector = Vector2.ZERO
-	# Get the input for X and Y axes
-	input_vector.x = Input.get_axis("Left", "Right")
-	input_vector.y = Input.get_axis("Up", "Down")
-
-	# Normalize the input vector to ensure diagonal movement isn't faster
-	if input_vector != Vector2.ZERO:
-		input_vector = input_vector.normalized()
-
-	# If Facing Right
-	if input_vector.x > 0:
-		player_sprite.flip_h = true
-		camera_flash_area.rotation_degrees = 0  # CameraFlash Facing Right
-		facing_direction = Vector2.RIGHT
-	# If Facing Left
-	if input_vector.x < 0:
-		player_sprite.flip_h = false
-		camera_flash_area.rotation_degrees = 180  # CameraFlash Facing Left
-		facing_direction = Vector2.LEFT
-	if input_vector.y > 0:
-		camera_flash_area.rotation_degrees = 90 # CameraFlash Facing Down
-		facing_direction = Vector2.DOWN
-	if input_vector.y < 0:
-		camera_flash_area.rotation_degrees = -90 # CameraFlash Facing Up
-		facing_direction = Vector2.UP
-	if input_vector.x != 0 or input_vector.y != 0:
-		player_sprite.play("default")
-		if sfx_can_play:
-			play_walking_sfx()
-	else:
-		player_sprite.stop()
-		stop_walking_sfx()
+	
+	if is_punching == false:
+		input_vector.x = Input.get_axis("Left", "Right")
+		input_vector.y = Input.get_axis("Up", "Down")
+		# Normalize the input vector to ensure diagonal movement isn't faster
+		if input_vector != Vector2.ZERO:
+			input_vector = input_vector.normalized()
+		# If Facing Right
+		if input_vector.x > 0 and input_vector.y == 0:
+			player_sprite.play("walk_side")
+			player_sprite.flip_h = false
+			camera_flash_area.rotation_degrees = 0  # CameraFlash Facing Right
+			facing_direction = Vector2.RIGHT
+		# If Facing Left
+		if input_vector.x < 0 and input_vector.y == 0:
+			player_sprite.play("walk_side")
+			player_sprite.flip_h = true
+			camera_flash_area.rotation_degrees = 180  # CameraFlash Facing Left
+			facing_direction = Vector2.LEFT
+		if input_vector.y > 0:
+			player_sprite.play("walk_down")
+			camera_flash_area.rotation_degrees = 90 # CameraFlash Facing Down
+			facing_direction = Vector2.DOWN
+		if input_vector.y < 0:
+			player_sprite.play("walk_up")
+			camera_flash_area.rotation_degrees = -90 # CameraFlash Facing Up
+			facing_direction = Vector2.UP
+		if input_vector.x != 0 or input_vector.y != 0:
+			#player_sprite.play("default")
+			if sfx_can_play:
+				play_walking_sfx()
+		if input_vector.x == 0 and input_vector.y == 0 and !is_punching:
+			player_sprite.play("default")
+		else:
+			stop_walking_sfx()
 
 	# Handle Ordinance
 	if Input.is_action_pressed("Ordinance"):
-		# Put Punching Animation Here to Play
-		pass
+		is_punching = true
+		if facing_direction == Vector2.RIGHT:
+			player_sprite.play("punch_side")
+		if facing_direction == Vector2.LEFT:
+			player_sprite.play("punch_side")
+		if facing_direction == Vector2.DOWN:
+			player_sprite.play("punch_down")
+		if facing_direction == Vector2.UP:
+			player_sprite.play("punch_up")
+	if Input.is_action_just_released("Ordinance"):
+		is_punching = false
 	# Handle Capture
 	if Input.is_action_pressed("Capture") and slots_available:
-		if can_capture and !menu_open and in_cage == false:
+		if can_capture and !menu_open and in_cage == false and State.state_at_boat == false:
 			capture_camera_sfx.play()
 			fire_camera_beam()
 			can_capture = false
@@ -81,9 +93,9 @@ func _physics_process(_delta: float) -> void:
 			flash_timer.start()
 			flash_sprite_timer.start()
 
-	# Apply the movement
-	velocity = input_vector * speed
-	move_and_slide()
+	if is_punching == false:
+		velocity = input_vector * speed
+		move_and_slide()
 
 func play_walking_sfx():
 	sfx_can_play = false

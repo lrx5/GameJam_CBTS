@@ -33,9 +33,14 @@ var do_not_spawn = false
 @onready var button3 = get_node("/root/MainScene/Hud/Control/Button3")
 @onready var button4 = get_node("/root/MainScene/Hud/Control/Button4")
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var build_area = get_node("/root/MainScene/Tiles/CagePlot_2")
+@onready var cage_info: Label = $CageInfo
+@onready var cage_info_timer: Timer = $CageInfoTimer
+
 func _ready() -> void:
 	cage_label.visible = false
 	sprite_2d.visible = false
+	cage_info.visible = false
 	set_process(false)
 	button1.connect("pressed", Callable(self, "_on_button_pressed"))
 	button2.connect("pressed", Callable(self, "_on_button_2_pressed"))
@@ -49,6 +54,8 @@ func _process(_delta: float) -> void:
 			rm.decrease_stone(50)
 			build_cage()
 			cage_label.visible = false
+			cage_info.visible = true
+			cage_info_timer.start()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.name == "Player":
@@ -56,6 +63,7 @@ func _on_body_entered(body: Node2D) -> void:
 		player.in_cage = true
 	if is_built == false:
 		cage_label.visible = true
+		in_cage = true
 	if is_built:
 		in_cage = true
 
@@ -65,6 +73,7 @@ func _on_body_exited(body: Node2D) -> void:
 		player.in_cage = false
 	if is_built == false:
 		cage_label.visible = false
+		in_cage = false
 	if is_built:
 		in_cage = false
 
@@ -72,9 +81,10 @@ func build_cage():
 	is_built = true
 	animated_sprite_2d.visible = true
 	animated_sprite_2d.play("default")
+	build_area.visible = false
 
 func _on_button_pressed() -> void:
-	if in_cage and cage_is_not_full == true:
+	if in_cage and is_built and cage_is_not_full == true:
 		spawn_animal_in_cage(rm.slot_1)
 		# Remove Portrait
 		rm.slot_1 = "Nothing"
@@ -84,7 +94,7 @@ func _on_button_pressed() -> void:
 		player.slots_available = true
 
 func _on_button_2_pressed() -> void:
-	if in_cage and cage_is_not_full == true:
+	if in_cage and is_built and cage_is_not_full == true:
 		spawn_animal_in_cage(rm.slot_2)
 		# Remove Portrait
 		rm.slot_2 = "Nothing"
@@ -94,7 +104,7 @@ func _on_button_2_pressed() -> void:
 		player.slots_available = true
 		
 func _on_button_3_pressed() -> void:
-	if in_cage and cage_is_not_full == true:
+	if in_cage and is_built and cage_is_not_full == true:
 		spawn_animal_in_cage(rm.slot_3)
 		# Remove Portrait
 		rm.slot_3 = "Nothing"
@@ -103,7 +113,7 @@ func _on_button_3_pressed() -> void:
 		delete_3.visible = false
 		player.slots_available = true
 func _on_button_4_pressed() -> void:
-	if in_cage and cage_is_not_full == true:
+	if in_cage and is_built and cage_is_not_full == true:
 		spawn_animal_in_cage(rm.slot_4)
 		# Remove Portrait
 		rm.slot_4 = "Nothing"
@@ -195,3 +205,7 @@ func check_if_cage_not_full():
 	if cage_1_free == false and cage_2_free == false and cage_3_free == false and cage_4_free == false:
 		cage_is_not_full = false
 	return cage_is_not_full
+
+
+func _on_cage_info_timer_timeout() -> void:
+	cage_info.visible = false
