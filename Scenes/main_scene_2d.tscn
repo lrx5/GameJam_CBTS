@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://7frb0sheglw3"]
+[gd_scene load_steps=58 format=4 uid="uid://7frb0sheglw3"]
 
 [ext_resource type="Script" path="res://Scripts/main_scene_2d.gd" id="1_7vwou"]
 [ext_resource type="Script" path="res://Scripts/health_manager.gd" id="2_8x07p"]
@@ -21,7 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://cy4mukip6nbsd" path="res://Sprites/Test/Test_Lock.PNG" id="9_pfyjd"]
 [ext_resource type="Texture2D" uid="uid://cllc8275hamq1" path="res://Sprites/Player/Noah.png" id="10_56rdo"]
 [ext_resource type="AudioStream" uid="uid://d4now0v8ujyhj" path="res://Audio/walking.wav" id="11_5i24b"]
+[ext_resource type="Script" path="res://Scripts/lose_screen.gd" id="12_f16uh"]
 [ext_resource type="AudioStream" uid="uid://2yavymnnhqwy" path="res://Audio/flash_camera.wav" id="12_obm2s"]
+[ext_resource type="Texture2D" uid="uid://8ujty66o63r1" path="res://Sprites/LoseScreen.png" id="12_y4b0q"]
 [ext_resource type="AudioStream" uid="uid://brkep2dq7ecd8" path="res://Audio/capture_camera.wav" id="13_jtkhv"]
 [ext_resource type="Script" path="res://Scripts/beam_falloff.gd" id="15_yqg5b"]
 [ext_resource type="Texture2D" uid="uid://bca0bulw1jcd4" path="res://Sprites/flash_sprite.png" id="16_a8ccy"]
@@ -49,7 +51,7 @@ shadow_offset = Vector2(0.5, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_todh8"]
 font = ExtResource("2_pp2l0")
-font_size = 9
+font_size = 10
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0.5, 0.5)
 
@@ -4810,6 +4812,15 @@ offset_bottom = 32.0
 text = "000"
 label_settings = SubResource("LabelSettings_todh8")
 
+[node name="GameTimer" type="Label" parent="Hud/Control"]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 21.0
+offset_right = 296.0
+offset_bottom = 32.0
+text = "Time Left: 100"
+label_settings = SubResource("LabelSettings_todh8")
+
 [node name="WoodIcon" type="TextureRect" parent="Hud/Control"]
 clip_contents = true
 layout_mode = 0
@@ -5018,6 +5029,10 @@ offset_left = 171.0
 offset_top = 165.0
 offset_right = 183.0
 offset_bottom = 175.0
+
+[node name="FloodTimer" type="Timer" parent="Hud/Control"]
+wait_time = 5.0
+autostart = true
 
 [node name="Upgrades" type="CanvasLayer" parent="."]
 
@@ -5641,6 +5656,52 @@ mouse_filter = 2
 texture = ExtResource("9_pfyjd")
 expand_mode = 1
 
+[node name="LoseScreen" type="CanvasLayer" parent="."]
+layer = 10
+visible = false
+script = ExtResource("12_f16uh")
+
+[node name="TextureRect" type="TextureRect" parent="LoseScreen"]
+z_index = 10
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 322.0
+offset_bottom = 181.0
+texture = ExtResource("12_y4b0q")
+
+[node name="LoseLabel" type="Label" parent="LoseScreen"]
+z_index = 11
+offset_left = 75.0
+offset_top = 38.0
+offset_right = 241.0
+offset_bottom = 65.0
+text = "YOU HAVE PERISHED IN 
+THE GREAT FLOOD"
+label_settings = SubResource("LabelSettings_todh8")
+horizontal_alignment = 1
+
+[node name="RestartLabel" type="Label" parent="LoseScreen"]
+z_index = 14
+offset_left = 128.0
+offset_top = 101.0
+offset_right = 193.0
+offset_bottom = 113.0
+text = "RESTART?"
+label_settings = SubResource("LabelSettings_todh8")
+horizontal_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="LoseScreen"]
+z_index = 12
+offset_left = 111.0
+offset_top = 97.0
+offset_right = 209.0
+offset_bottom = 120.0
+texture_normal = ExtResource("5_0y8el")
+texture_pressed = ExtResource("6_4ihsy")
+texture_hover = ExtResource("7_ddgdm")
+ignore_texture_size = true
+stretch_mode = 0
+
 [node name="HealthManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_8x07p")
@@ -5666,7 +5727,7 @@ tile_set = SubResource("TileSet_qn1hg")
 
 [node name="CagePlots" type="TileMapLayer" parent="Tiles"]
 z_index = -10
-tile_map_data = PackedByteArray("AAAUAAsAAAADAAIAAAATAAsAAAACAAMAAAASAAsAAAACAAMAAAARAAsAAAACAAMAAAAQAAsAAAABAAIAAAAQAAoAAAAAAAEAAAAQAAkAAAAAAAEAAAAQAAgAAAABAAAAAAARAAgAAAACAAMAAAASAAgAAAACAAMAAAATAAgAAAACAAMAAAAUAAgAAAADAAAAAAAUAAkAAAAAAAEAAAAUAAoAAAAAAAEAAAATAAkAAAADAAAAAAASAAkAAAACAAAAAAARAAkAAAABAAAAAAARAAoAAAABAAIAAAASAAoAAAACAAIAAAATAAoAAAADAAIAAAAXAAgAAAABAAAAAAAXAAkAAAAAAAEAAAAXAAoAAAAAAAEAAAAXAAsAAAABAAIAAAAYAAgAAAACAAMAAAAYAAkAAAABAAAAAAAYAAoAAAABAAIAAAAYAAsAAAACAAMAAAAZAAgAAAACAAMAAAAZAAkAAAACAAAAAAAZAAoAAAACAAIAAAAZAAsAAAACAAMAAAAaAAgAAAACAAMAAAAaAAkAAAADAAAAAAAaAAoAAAADAAIAAAAaAAsAAAACAAMAAAAbAAgAAAADAAAAAAAbAAkAAAAAAAEAAAAbAAoAAAAAAAEAAAAbAAsAAAADAAIAAAAQAAQAAAAAAAEAAAAQAAUAAAAAAAEAAAAQAAYAAAABAAIAAAARAAQAAAABAAAAAAARAAUAAAABAAIAAAARAAYAAAACAAMAAAASAAQAAAACAAAAAAASAAUAAAACAAIAAAASAAYAAAACAAMAAAATAAQAAAADAAAAAAATAAUAAAADAAIAAAATAAYAAAACAAMAAAAUAAQAAAAAAAEAAAAUAAUAAAAAAAEAAAAUAAYAAAADAAIAAAAXAAQAAAAAAAEAAAAXAAUAAAAAAAEAAAAXAAYAAAABAAIAAAAYAAQAAAABAAAAAAAYAAUAAAABAAIAAAAYAAYAAAACAAMAAAAZAAQAAAACAAAAAAAZAAUAAAACAAIAAAAZAAYAAAACAAMAAAAaAAQAAAADAAAAAAAaAAUAAAADAAIAAAAaAAYAAAACAAMAAAAbAAQAAAAAAAEAAAAbAAUAAAAAAAEAAAAbAAYAAAADAAIAAAAQAAMAAAABAAAAAAARAAMAAAACAAMAAAASAAMAAAACAAMAAAATAAMAAAACAAMAAAAUAAMAAAADAAAAAAAXAAMAAAABAAAAAAAYAAMAAAACAAMAAAAZAAMAAAACAAMAAAAaAAMAAAACAAMAAAAbAAMAAAADAAAAAAA=")
+tile_map_data = PackedByteArray("AAAUAAsAAAADAAIAAAATAAsAAAACAAMAAAASAAsAAAACAAMAAAARAAsAAAACAAMAAAAQAAsAAAABAAIAAAAQAAoAAAAAAAEAAAAQAAkAAAAAAAEAAAAQAAgAAAABAAAAAAARAAgAAAACAAMAAAASAAgAAAACAAMAAAATAAgAAAACAAMAAAAUAAgAAAADAAAAAAAUAAkAAAAAAAEAAAAUAAoAAAAAAAEAAAATAAkAAAADAAAAAAASAAkAAAACAAAAAAARAAkAAAABAAAAAAARAAoAAAABAAIAAAASAAoAAAACAAIAAAATAAoAAAADAAIAAAAXAAgAAAABAAAAAAAXAAkAAAAAAAEAAAAXAAoAAAAAAAEAAAAXAAsAAAABAAIAAAAYAAgAAAACAAMAAAAYAAkAAAABAAAAAAAYAAoAAAABAAIAAAAYAAsAAAACAAMAAAAZAAgAAAACAAMAAAAZAAkAAAACAAAAAAAZAAoAAAACAAIAAAAZAAsAAAACAAMAAAAaAAgAAAACAAMAAAAaAAkAAAADAAAAAAAaAAoAAAADAAIAAAAaAAsAAAACAAMAAAAbAAgAAAADAAAAAAAbAAkAAAAAAAEAAAAbAAoAAAAAAAEAAAAbAAsAAAADAAIAAAA=")
 tile_set = SubResource("TileSet_qn1hg")
 
 [node name="Player" type="CharacterBody2D" parent="."]
@@ -5881,6 +5942,7 @@ shape = SubResource("RectangleShape2D_iuaj0")
 [connection signal="pressed" from="Hud/Control/Delete2" to="Hud/Control" method="_on_delete_2_pressed"]
 [connection signal="pressed" from="Hud/Control/Delete3" to="Hud/Control" method="_on_delete_3_pressed"]
 [connection signal="pressed" from="Hud/Control/Delete4" to="Hud/Control" method="_on_delete_4_pressed"]
+[connection signal="timeout" from="Hud/Control/FloodTimer" to="Hud/Control" method="_on_flood_timer_timeout"]
 [connection signal="mouse_entered" from="Upgrades/Control/TextureButton" to="Upgrades/Control" method="_on_texture_button_mouse_entered"]
 [connection signal="mouse_exited" from="Upgrades/Control/TextureButton" to="Upgrades/Control" method="_on_texture_button_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton" to="Upgrades/Control" method="_on_texture_button_pressed"]
@@ -5926,6 +5988,7 @@ shape = SubResource("RectangleShape2D_iuaj0")
 [connection signal="mouse_entered" from="Upgrades/Control/TextureButton15" to="Upgrades/Control" method="_on_texture_button_15_mouse_entered"]
 [connection signal="mouse_exited" from="Upgrades/Control/TextureButton15" to="Upgrades/Control" method="_on_texture_button_15_mouse_exited"]
 [connection signal="pressed" from="Upgrades/Control/TextureButton15" to="Upgrades/Control" method="_on_texture_button_15_pressed"]
+[connection signal="pressed" from="LoseScreen/TextureButton" to="LoseScreen" method="_on_texture_button_pressed"]
 [connection signal="finished" from="Player/WalkingSFX" to="Player" method="_on_walking_sfx_finished"]
 [connection signal="timeout" from="Player/FlashTimer" to="Player" method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="Player/CaptureTimer" to="Player" method="_on_capture_timer_timeout"]

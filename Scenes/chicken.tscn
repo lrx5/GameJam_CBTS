@@ -91,6 +91,8 @@ _data = {
 
 [node name="Chicken" type="Area2D"]
 z_index = -1
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(-183, 70)
 collision_layer = 2097152
 collision_mask = 1310720
