@@ -1,6 +1,8 @@
 extends Area2D
 
 var can_flash = true
+var goat_hp = 8
+var can_collect = true
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var stun_sprite: Sprite2D = $StunSprite
 @onready var stun_timer: Timer = $StunTimer
@@ -8,6 +10,7 @@ var can_flash = true
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animated_sprite_2d_2: AnimatedSprite2D = $AnimatedSprite2D2
 @onready var animated_sprite_2d_3: AnimatedSprite2D = $AnimatedSprite2D3
+@onready var punch_timer: Timer = $PunchTimer
 
 @onready var rm = get_node("/root/MainScene/ResourceManager")
 # Movement Variables
@@ -32,6 +35,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if State.flashing:
 		stun_flash()
+
+	punch_timer.wait_time = State.punch_timer
+	if goat_hp <= 0:
+		rm.increase_meat(16)
+		queue_free()
+
+	if Input.is_action_pressed("Ordinance") and can_collect == true:
+		goat_hp -= 1
+		can_collect = false
+		punch_timer.start()
 
 func _physics_process(delta: float) -> void:
 	# Move the sprite towards the target position
@@ -87,3 +100,7 @@ func _change_direction():
 		animated_sprite_2d.visible = false
 		animated_sprite_2d_3.visible = true
 	target_position = position + directions[current_direction] * move_distance
+
+
+func _on_punch_timer_timeout() -> void:
+	can_collect = true
