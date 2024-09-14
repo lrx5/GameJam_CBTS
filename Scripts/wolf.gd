@@ -2,9 +2,14 @@ extends Area2D
 
 var can_flash = true
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var stun_sprite: Sprite2D = $StunSprite
 @onready var stun_timer: Timer = $StunTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animated_sprite_2d_2: AnimatedSprite2D = $AnimatedSprite2D2
+@onready var animated_sprite_2d_3: AnimatedSprite2D = $AnimatedSprite2D3
+
+
 @onready var rm = get_node("/root/MainScene/ResourceManager")
 # Movement Variables
 var move_speed = 50  # Speed of movement (units per second)
@@ -22,6 +27,8 @@ var directions = [
 
 func _ready() -> void:
 	stun_sprite.visible = false
+	animated_sprite_2d_2.visible = false
+	animated_sprite_2d_3.visible = false
 	set_process(false)
 	target_position = position + directions[current_direction] * move_distance
 	
@@ -49,11 +56,9 @@ func _on_area_entered(area: Area2D) -> void:
 		queue_free()
 	if area is Area2D and area.name == "CameraFlashArea":
 		@warning_ignore("narrowing_conversion")
-		self_modulate(0.5)
 		set_process(true)
 func _on_area_exited(area: Area2D) -> void:
 	if area is Area2D and area.name == "CameraFlashArea":
-		self_modulate(1)
 		set_process(false)
 
 func stun_flash():
@@ -70,4 +75,18 @@ func _change_direction():
 	# Cycle through directions (right -> down -> left -> up -> repeat)
 	current_direction = (current_direction + 1) % 4
 	# Set the new target position
+	if current_direction == 0:
+		animated_sprite_2d.visible = true
+		animated_sprite_2d_3.visible = false
+		animated_sprite_2d.flip_h = false
+	if current_direction == 1:
+		animated_sprite_2d.visible = false
+		animated_sprite_2d_2.visible = true
+	if current_direction == 2:
+		animated_sprite_2d_2.visible = false
+		animated_sprite_2d.visible = true
+		animated_sprite_2d.flip_h = true
+	if current_direction == 3:
+		animated_sprite_2d.visible = false
+		animated_sprite_2d_3.visible = true
 	target_position = position + directions[current_direction] * move_distance

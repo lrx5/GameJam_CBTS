@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dt0eepqixs2nj"]
+[gd_scene load_steps=26 format=3 uid="uid://dt0eepqixs2nj"]
 
 [ext_resource type="Script" path="res://Scripts/lion.gd" id="1_juoom"]
-[ext_resource type="Texture2D" uid="uid://dbbaroe2xn5cn" path="res://Sprites/Test/Test_Lion.PNG" id="2_eri7c"]
+[ext_resource type="Texture2D" uid="uid://bcv6vub0n7ceb" path="res://Sprites/Animal_Sprites.png" id="2_7mrfu"]
 [ext_resource type="Texture2D" uid="uid://3bvmqgq1jvoh" path="res://Sprites/stun_icon.png" id="3_0ok88"]
+[ext_resource type="Texture2D" uid="uid://cuad8mmbulj3p" path="res://Sprites/Animal_Anim_Sprites.png" id="4_3k72a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rijia"]
 size = Vector2(14, 16)
@@ -88,17 +89,128 @@ _data = {
 "stun_rotate": SubResource("Animation_jokgr")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vv0l"]
+atlas = ExtResource("4_3k72a")
+region = Rect2(207, 0, 51, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43tbe"]
+atlas = ExtResource("4_3k72a")
+region = Rect2(207, 40, 51, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i60x"]
+atlas = ExtResource("4_3k72a")
+region = Rect2(207, 80, 51, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqi7b"]
+atlas = ExtResource("4_3k72a")
+region = Rect2(207, 120, 51, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vf0y2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vv0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43tbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i60x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqi7b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p42ki"]
+atlas = ExtResource("4_3k72a")
+region = Rect2(262, 0, 20, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0gxu"]
+atlas = ExtResource("4_3k72a")
+region = Rect2(262, 40, 20, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fmfy"]
+atlas = ExtResource("4_3k72a")
+region = Rect2(262, 80, 20, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ob5i"]
+atlas = ExtResource("4_3k72a")
+region = Rect2(262, 120, 20, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0cst"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p42ki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0gxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fmfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ob5i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lv64"]
+atlas = ExtResource("4_3k72a")
+region = Rect2(285, 0, 22, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtgoe"]
+atlas = ExtResource("4_3k72a")
+region = Rect2(285, 40, 22, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqrs8"]
+atlas = ExtResource("4_3k72a")
+region = Rect2(285, 80, 22, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hg6i"]
+atlas = ExtResource("4_3k72a")
+region = Rect2(285, 120, 22, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_atr3b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lv64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtgoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqrs8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hg6i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Lion" type="Area2D"]
 z_index = -1
+y_sort_enabled = true
 position = Vector2(-183, 70)
 collision_layer = 2097152
 collision_mask = 1310720
 script = ExtResource("1_juoom")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-3.09944e-06, -7)
-scale = Vector2(0.0541237, 0.0541237)
-texture = ExtResource("2_eri7c")
+texture = ExtResource("2_7mrfu")
+region_enabled = true
+region_rect = Rect2(97, 53, 49, 34)
 
 [node name="StunSprite" type="Sprite2D" parent="."]
 position = Vector2(1.07288e-06, -24)
@@ -123,6 +235,23 @@ libraries = {
 }
 
 [node name="LionSFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -12)
+sprite_frames = SubResource("SpriteFrames_vf0y2")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_j0cst")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(1, -8)
+sprite_frames = SubResource("SpriteFrames_atr3b")
+autoplay = "default"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

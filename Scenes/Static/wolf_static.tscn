@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c21ndflesmd0i"]
 
 [ext_resource type="Script" path="res://Scripts/wolf_static.gd" id="1_7hfm8"]
-[ext_resource type="Texture2D" uid="uid://ccosfcide1eiu" path="res://Sprites/Test/Test_Wolf.PNG" id="2_ud87q"]
+[ext_resource type="Texture2D" uid="uid://p4bmyavfdci" path="res://Sprites/Wolf_Portrait.png" id="2_t4dre"]
 [ext_resource type="Texture2D" uid="uid://3bvmqgq1jvoh" path="res://Sprites/stun_icon.png" id="3_jqae6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rijia"]
@@ -97,8 +97,7 @@ script = ExtResource("1_7hfm8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3.09944e-06, -7)
-scale = Vector2(0.0541237, 0.0541237)
-texture = ExtResource("2_ud87q")
+texture = ExtResource("2_t4dre")
 
 [node name="StunSprite" type="Sprite2D" parent="."]
 position = Vector2(1.07288e-06, -24)

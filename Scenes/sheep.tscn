@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqmpu3m53sfke"]
+[gd_scene load_steps=26 format=3 uid="uid://dqmpu3m53sfke"]
 
 [ext_resource type="Script" path="res://Scripts/sheep.gd" id="1_vdc12"]
-[ext_resource type="Texture2D" uid="uid://b0opq0u4v87w2" path="res://Sprites/Test/Test_Sheep.PNG" id="2_ic2tm"]
+[ext_resource type="Texture2D" uid="uid://bcv6vub0n7ceb" path="res://Sprites/Animal_Sprites.png" id="2_vw2vy"]
 [ext_resource type="Texture2D" uid="uid://3bvmqgq1jvoh" path="res://Sprites/stun_icon.png" id="3_lpyk8"]
+[ext_resource type="Texture2D" uid="uid://cuad8mmbulj3p" path="res://Sprites/Animal_Anim_Sprites.png" id="4_60xeg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rijia"]
 size = Vector2(14, 16)
@@ -88,17 +89,128 @@ _data = {
 "stun_rotate": SubResource("Animation_jokgr")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3bw4"]
+atlas = ExtResource("4_60xeg")
+region = Rect2(69, 0, 33, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pp18"]
+atlas = ExtResource("4_60xeg")
+region = Rect2(69, 40, 33, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwebu"]
+atlas = ExtResource("4_60xeg")
+region = Rect2(69, 80, 33, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71wlf"]
+atlas = ExtResource("4_60xeg")
+region = Rect2(69, 120, 33, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8uwnt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3bw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pp18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwebu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71wlf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke8br"]
+atlas = ExtResource("4_60xeg")
+region = Rect2(104, 0, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8rxh"]
+atlas = ExtResource("4_60xeg")
+region = Rect2(104, 40, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3h5k"]
+atlas = ExtResource("4_60xeg")
+region = Rect2(104, 80, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0hdi"]
+atlas = ExtResource("4_60xeg")
+region = Rect2(104, 120, 16, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5htik"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ke8br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8rxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3h5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0hdi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gf5p"]
+atlas = ExtResource("4_60xeg")
+region = Rect2(121, 0, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e6mx"]
+atlas = ExtResource("4_60xeg")
+region = Rect2(121, 40, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5llel"]
+atlas = ExtResource("4_60xeg")
+region = Rect2(121, 80, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcn8e"]
+atlas = ExtResource("4_60xeg")
+region = Rect2(121, 120, 16, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wbl4f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gf5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4e6mx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5llel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcn8e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Sheep" type="Area2D"]
 z_index = -1
+y_sort_enabled = true
 position = Vector2(-183, 70)
 collision_layer = 2097152
 collision_mask = 1310720
 script = ExtResource("1_vdc12")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-3.09944e-06, -7)
-scale = Vector2(0.0541237, 0.0541237)
-texture = ExtResource("2_ic2tm")
+texture = ExtResource("2_vw2vy")
+region_enabled = true
+region_rect = Rect2(96, 9, 33, 30)
 
 [node name="StunSprite" type="Sprite2D" parent="."]
 position = Vector2(1.07288e-06, -24)
@@ -123,6 +235,23 @@ libraries = {
 }
 
 [node name="SheepSFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_8uwnt")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_5htik")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_wbl4f")
+autoplay = "default"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

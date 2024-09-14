@@ -1,10 +1,10 @@
 extends Node
 
 # Starting Resource Values
-var wood = 100
-var stone = 100
-var grain = 100
-var meat = 0
+var wood = 999
+var stone = 999
+var grain = 999
+var meat = 999
 
 # Resource Multipliers
 var multiplier_wood = 1
@@ -30,10 +30,10 @@ var slot_4
 
 # Preload Animal Portraits
 var chicken_texture = preload("res://Sprites/Test/Test_Chicken.png")
-var wolf_texture = preload("res://Sprites/Test/Test_Wolf.PNG")
-var lion_texture = preload("res://Sprites/Test/Test_Lion.PNG")
-var cow_texture = preload("res://Sprites/Test/Test_Cow.PNG")
-var sheep_texture = preload("res://Sprites/Test/Test_Sheep.PNG")
+var wolf_texture = preload("res://Sprites/Wolf_Portrait.png")
+var lion_texture = preload("res://Sprites/Bear_Portrait.png")
+var cow_texture = preload("res://Sprites/Boar_Portrait.png")
+var sheep_texture = preload("res://Sprites/Goat_Portrait.png")
 
 # Access TextureRects & Delete Buttons
 @onready var player = get_node("/root/MainScene/Player")
@@ -50,6 +50,7 @@ func _ready() -> void:
 	update_wood_label()
 	update_stone_label()
 	update_grain_label()
+	update_meat_label()
 
 # Change Resource Values
 func increase_wood(amount: int) -> void:
@@ -61,6 +62,9 @@ func increase_stone(amount: int) -> void:
 func increase_grain(amount: int) -> void:
 	grain += amount * multiplier_grain
 	update_grain_label()
+func increase_meat(amount: int) -> void:
+	meat += amount * multiplier_meat
+	update_meat_label()
 func decrease_wood(amount: int) -> void:
 	wood -= amount 
 	update_wood_label()
@@ -70,6 +74,9 @@ func decrease_stone(amount: int) -> void:
 func decrease_grain(amount: int) -> void:
 	grain -= amount
 	update_grain_label()
+func decrease_meat(amount: int) -> void:
+	meat -= amount
+	update_meat_label()
 
 func capture_animal(animal: String) -> void:
 	if animal == "Chicken":
@@ -115,6 +122,15 @@ func update_grain_label() -> void:
 		grain_label.text = "999"
 	else:
 		grain_label.text = str(grain)
+func update_meat_label() -> void:
+	if meat < 10:
+		meat_label.text = "00" + str(meat)
+	elif meat < 100:
+		meat_label.text = "0" + str(meat)
+	elif meat > 999:
+		meat_label.text = "999"
+	else:
+		meat_label.text = str(meat)
 
 func check_slots(animal: String) -> void:
 		if slot_1_empty:

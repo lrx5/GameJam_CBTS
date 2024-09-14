@@ -7,3 +7,4 @@ var facing_down = false
 var facing_right = false
 var facing_left = false
 var punch_timer = 2
+var player_position

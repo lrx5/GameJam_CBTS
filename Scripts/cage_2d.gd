@@ -12,12 +12,6 @@ var cage_3_free = true
 var cage_4_free = true
 var animal_to_spawn
 var do_not_spawn = false
-# Packed Scenes
-@export var chicken_scene: PackedScene = preload("res://Scenes/chicken.tscn")
-@export var wolf_scene: PackedScene = preload("res://Scenes/wolf.tscn")
-@export var lion_scene: PackedScene = preload("res://Scenes/lion.tscn")
-@export var cow_scene: PackedScene = preload("res://Scenes/cow.tscn")
-@export var sheep_scene: PackedScene = preload("res://Scenes/sheep.tscn")
 
 # Nodes
 @onready var player = get_node("/root/MainScene/Player")

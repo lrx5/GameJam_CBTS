@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ckvk5ul25ttph"]
 
 [ext_resource type="Script" path="res://Scripts/cow_static.gd" id="1_c5jx0"]
-[ext_resource type="Texture2D" uid="uid://h723yaifstax" path="res://Sprites/Test/Test_Cow.PNG" id="2_1rmxc"]
+[ext_resource type="Texture2D" uid="uid://bcv6vub0n7ceb" path="res://Sprites/Animal_Sprites.png" id="2_matls"]
 [ext_resource type="Texture2D" uid="uid://3bvmqgq1jvoh" path="res://Sprites/stun_icon.png" id="3_55wh7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rijia"]
@@ -97,8 +97,9 @@ script = ExtResource("1_c5jx0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3.09944e-06, -7)
-scale = Vector2(0.0541237, 0.0541237)
-texture = ExtResource("2_1rmxc")
+texture = ExtResource("2_matls")
+region_enabled = true
+region_rect = Rect2(41, 15, 16, 24)
 
 [node name="StunSprite" type="Sprite2D" parent="."]
 position = Vector2(1.07288e-06, -24)

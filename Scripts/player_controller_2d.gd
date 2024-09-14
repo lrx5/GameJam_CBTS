@@ -22,7 +22,9 @@ var in_cage = false
 var facing_direction = Vector2.RIGHT
 
 func _physics_process(_delta: float) -> void:
-	
+	# Update player's position in the global state
+	State.player_position = global_position
+
 	var input_vector = Vector2.ZERO
 	# Get the input for X and Y axes
 	input_vector.x = Input.get_axis("Left", "Right")

@@ -49,11 +49,9 @@ func _on_area_entered(area: Area2D) -> void:
 		queue_free()
 	if area is Area2D and area.name == "CameraFlashArea":
 		@warning_ignore("narrowing_conversion")
-		self_modulate(0.5)
 		set_process(true)
 func _on_area_exited(area: Area2D) -> void:
 	if area is Area2D and area.name == "CameraFlashArea":
-		self_modulate(1)
 		set_process(false)
 
 func stun_flash():

@@ -5670,12 +5670,14 @@ tile_map_data = PackedByteArray("AAAUAAsAAAADAAIAAAATAAsAAAACAAMAAAASAAsAAAACAAM
 tile_set = SubResource("TileSet_qn1hg")
 
 [node name="Player" type="CharacterBody2D" parent="."]
+y_sort_enabled = true
 position = Vector2(166, 149)
 collision_layer = 65793
 motion_mode = 1
 script = ExtResource("4_nyq4j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_p1o3h")
 frame_progress = 0.838354
 

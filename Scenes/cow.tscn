@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmyeoqam03ij0"]
+[gd_scene load_steps=26 format=3 uid="uid://bmyeoqam03ij0"]
 
 [ext_resource type="Script" path="res://Scripts/cow.gd" id="1_jst6i"]
-[ext_resource type="Texture2D" uid="uid://h723yaifstax" path="res://Sprites/Test/Test_Cow.PNG" id="2_m3kdu"]
+[ext_resource type="Texture2D" uid="uid://bcv6vub0n7ceb" path="res://Sprites/Animal_Sprites.png" id="2_v8ho7"]
 [ext_resource type="Texture2D" uid="uid://3bvmqgq1jvoh" path="res://Sprites/stun_icon.png" id="3_pgkqm"]
+[ext_resource type="Texture2D" uid="uid://cuad8mmbulj3p" path="res://Sprites/Animal_Anim_Sprites.png" id="4_b2qv0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rijia"]
 size = Vector2(14, 16)
@@ -88,17 +89,128 @@ _data = {
 "stun_rotate": SubResource("Animation_jokgr")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qj311"]
+atlas = ExtResource("4_b2qv0")
+region = Rect2(0, 20, 35, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxsil"]
+atlas = ExtResource("4_b2qv0")
+region = Rect2(0, 60, 35, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83igg"]
+atlas = ExtResource("4_b2qv0")
+region = Rect2(0, 100, 35, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yn7qb"]
+atlas = ExtResource("4_b2qv0")
+region = Rect2(0, 140, 35, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2oo2a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qj311")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxsil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83igg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yn7qb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlebk"]
+atlas = ExtResource("4_b2qv0")
+region = Rect2(36, 0, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b451i"]
+atlas = ExtResource("4_b2qv0")
+region = Rect2(36, 40, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgu5d"]
+atlas = ExtResource("4_b2qv0")
+region = Rect2(36, 80, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo2hm"]
+atlas = ExtResource("4_b2qv0")
+region = Rect2(36, 120, 16, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4wg4a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlebk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b451i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgu5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lo2hm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54knw"]
+atlas = ExtResource("4_b2qv0")
+region = Rect2(53, 0, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xnnv"]
+atlas = ExtResource("4_b2qv0")
+region = Rect2(53, 40, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8jqa"]
+atlas = ExtResource("4_b2qv0")
+region = Rect2(53, 80, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnyel"]
+atlas = ExtResource("4_b2qv0")
+region = Rect2(53, 120, 16, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nun01"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54knw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xnnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8jqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnyel")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Cow" type="Area2D"]
 z_index = -1
+y_sort_enabled = true
 position = Vector2(-183, 70)
 collision_layer = 2097152
 collision_mask = 1310720
 script = ExtResource("1_jst6i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-3.09944e-06, -7)
-scale = Vector2(0.0541237, 0.0541237)
-texture = ExtResource("2_m3kdu")
+texture = ExtResource("2_v8ho7")
+region_enabled = true
+region_rect = Rect2(1, 21, 34, 18)
 
 [node name="StunSprite" type="Sprite2D" parent="."]
 position = Vector2(1.07288e-06, -24)
@@ -123,6 +235,27 @@ libraries = {
 }
 
 [node name="CowSFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_2oo2a")
+autoplay = "default"
+frame_progress = 0.129169
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+y_sort_enabled = true
+position = Vector2(0, -14)
+sprite_frames = SubResource("SpriteFrames_4wg4a")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+visible = false
+y_sort_enabled = true
+position = Vector2(0, -14)
+sprite_frames = SubResource("SpriteFrames_nun01")
+autoplay = "default"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

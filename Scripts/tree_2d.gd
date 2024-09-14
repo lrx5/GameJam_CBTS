@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 		can_collect = false
 		punch_timer.start()
 
-	if player.position.y > position.y - 10:
+	if State.player_position.y > position.y + 20:
 		z_index = -1  # Player is in front of the tree
 	else:
 		z_index = 1  # Tree is in front of the player

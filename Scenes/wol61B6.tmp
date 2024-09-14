@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bbswcekl5fo3e"]
+[gd_scene load_steps=16 format=3 uid="uid://bbswcekl5fo3e"]
 
 [ext_resource type="Script" path="res://Scripts/wolf.gd" id="1_4dx3r"]
 [ext_resource type="Texture2D" uid="uid://bcv6vub0n7ceb" path="res://Sprites/Animal_Sprites.png" id="2_xqjgy"]
@@ -125,81 +125,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4kx7n"]
-atlas = ExtResource("4_yxkol")
-region = Rect2(176, 0, 12, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_02sbi"]
-atlas = ExtResource("4_yxkol")
-region = Rect2(176, 40, 12, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5jpg2"]
-atlas = ExtResource("4_yxkol")
-region = Rect2(176, 80, 12, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_386yi"]
-atlas = ExtResource("4_yxkol")
-region = Rect2(176, 120, 12, 40)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_w0xfm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4kx7n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_02sbi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5jpg2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_386yi")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yldam"]
-atlas = ExtResource("4_yxkol")
-region = Rect2(190, 0, 14, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rw4sq"]
-atlas = ExtResource("4_yxkol")
-region = Rect2(190, 40, 14, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fp21s"]
-atlas = ExtResource("4_yxkol")
-region = Rect2(190, 80, 14, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dtsri"]
-atlas = ExtResource("4_yxkol")
-region = Rect2(190, 120, 14, 40)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pi6mb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yldam")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rw4sq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fp21s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dtsri")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="Wolf" type="Area2D"]
 z_index = -1
-y_sort_enabled = true
 position = Vector2(-183, 70)
 collision_layer = 2097152
 collision_mask = 1310720
@@ -239,18 +166,6 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -17)
 sprite_frames = SubResource("SpriteFrames_m1mmv")
-autoplay = "default"
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(1, -12)
-sprite_frames = SubResource("SpriteFrames_w0xfm")
-autoplay = "default"
-
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(1, -12)
-sprite_frames = SubResource("SpriteFrames_pi6mb")
 autoplay = "default"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
