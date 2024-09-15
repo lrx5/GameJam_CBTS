@@ -37,10 +37,10 @@ func _process(delta: float) -> void:
 	if boat_is_built == true and Input.is_action_just_pressed("Interact"):
 		game_over_win()
 	if boat_is_built == false and Input.is_action_just_pressed("Interact"):
-		if rm.wood >= 500 and rm.stone >= 400 and rm.grain >= 300 and rm.meat >= 100:
-			rm.decrease_wood(500)
-			rm.decrease_stone(400)
-			rm.decrease_grain(300)
+		if rm.wood >= 400 and rm.stone >= 300 and rm.grain >= 200 and rm.meat >= 100:
+			rm.decrease_wood(400)
+			rm.decrease_stone(300)
+			rm.decrease_grain(200)
 			rm.decrease_meat(100)
 			boat_is_built = true
 			vessel.visible = true

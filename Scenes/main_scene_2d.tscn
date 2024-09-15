@@ -7939,7 +7939,7 @@ offset_right = 183.0
 offset_bottom = 175.0
 
 [node name="FloodTimer" type="Timer" parent="Hud/Control"]
-wait_time = 5.0
+wait_time = 15.0
 autostart = true
 
 [node name="Upgrades" type="CanvasLayer" parent="."]
@@ -9097,8 +9097,8 @@ offset_top = -59.0
 offset_right = 198.0
 offset_bottom = 6.0
 scale = Vector2(0.35452, 0.35452)
-text = "500 WOOD; 400 STONE;
-300 GRAIN; 100 MEAT;
+text = "400 WOOD; 300 STONE;
+200 GRAIN; 100 MEAT;
 [E] TO BUILD LIFE VESSEL"
 label_settings = SubResource("LabelSettings_cscqx")
 horizontal_alignment = 1
