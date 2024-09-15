@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=4 uid="uid://7frb0sheglw3"]
+[gd_scene load_steps=115 format=4 uid="uid://7frb0sheglw3"]
 
 [ext_resource type="Script" path="res://Scripts/main_scene_2d.gd" id="1_7vwou"]
 [ext_resource type="Script" path="res://Scripts/health_manager.gd" id="2_8x07p"]
@@ -25,13 +25,16 @@
 [ext_resource type="Texture2D" uid="uid://8ujty66o63r1" path="res://Sprites/LoseScreen.png" id="12_y4b0q"]
 [ext_resource type="AudioStream" uid="uid://brkep2dq7ecd8" path="res://Audio/capture_camera.wav" id="13_jtkhv"]
 [ext_resource type="Script" path="res://Scripts/beam_falloff.gd" id="15_yqg5b"]
-[ext_resource type="Texture2D" uid="uid://bca0bulw1jcd4" path="res://Sprites/flash_sprite.png" id="16_a8ccy"]
 [ext_resource type="Texture2D" uid="uid://dwcrglluia6le" path="res://Sprites/Tileset/TilesetAtlas.png" id="17_5nvlh"]
+[ext_resource type="Texture2D" uid="uid://dr8i37pvmywvd" path="res://Sprites/Player/Noah_Flash.png" id="20_dka6j"]
 [ext_resource type="Texture2D" uid="uid://x1cgo0ilj1ck" path="res://Sprites/Player/Noah_Walk.png" id="20_h7o1e"]
 [ext_resource type="Texture2D" uid="uid://ca4xjp8ff85k7" path="res://Sprites/Player/Noah_Punch.png" id="20_wpoku"]
+[ext_resource type="Texture2D" uid="uid://b123vc232vbwr" path="res://Sprites/Player/Flash_Cone.png" id="26_wft16"]
 [ext_resource type="Script" path="res://Scripts/cage_2d_2.gd" id="27_qrtbg"]
+[ext_resource type="AudioStream" uid="uid://ci5hi1xfuf4lp" path="res://Audio/cbts_bgm.wav" id="27_wnpjd"]
 [ext_resource type="Script" path="res://Scripts/cage_2d.gd" id="28_o6sla"]
 [ext_resource type="Texture2D" uid="uid://dpvft581fghu" path="res://Sprites/Cage_Animation.png" id="29_bh8kd"]
+[ext_resource type="AudioStream" uid="uid://dlbyv1njxri62" path="res://Audio/is_punching.wav" id="29_pa4sl"]
 [ext_resource type="Script" path="res://Scripts/boat_area.gd" id="32_wlpf0"]
 [ext_resource type="Texture2D" uid="uid://ddrs6bgp6m08p" path="res://Sprites/Bowat.png" id="34_45bqh"]
 
@@ -7239,6 +7242,54 @@ terrain_set_1/terrain_0/name = "Edge"
 terrain_set_1/terrain_0/color = Color(0.385819, 0.517617, 1, 1)
 sources/0 = SubResource("TileSetAtlasSource_b8jeg")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o61mv"]
+atlas = ExtResource("20_dka6j")
+region = Rect2(151, 0, 20, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4ko3"]
+atlas = ExtResource("20_dka6j")
+region = Rect2(151, 116, 20, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8fi2"]
+atlas = ExtResource("20_dka6j")
+region = Rect2(151, 232, 20, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b37dw"]
+atlas = ExtResource("20_dka6j")
+region = Rect2(151, 356, 20, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ks7qx"]
+atlas = ExtResource("20_dka6j")
+region = Rect2(0, 20, 23, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg05y"]
+atlas = ExtResource("20_dka6j")
+region = Rect2(0, 136, 23, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_parhx"]
+atlas = ExtResource("20_dka6j")
+region = Rect2(0, 252, 23, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sb2r"]
+atlas = ExtResource("20_dka6j")
+region = Rect2(0, 376, 23, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkr4w"]
+atlas = ExtResource("20_dka6j")
+region = Rect2(248, 78, 20, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8c1ur"]
+atlas = ExtResource("20_dka6j")
+region = Rect2(248, 194, 20, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uly1v"]
+atlas = ExtResource("20_dka6j")
+region = Rect2(248, 310, 20, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic0pp"]
+atlas = ExtResource("20_dka6j")
+region = Rect2(248, 434, 20, 38)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_pl88p"]
 atlas = ExtResource("20_wpoku")
 region = Rect2(44, 1, 27, 54)
@@ -7344,6 +7395,57 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o61mv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4ko3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8fi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b37dw")
+}],
+"loop": true,
+"name": &"flash_down",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ks7qx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg05y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_parhx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sb2r")
+}],
+"loop": true,
+"name": &"flash_side",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkr4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8c1ur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uly1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic0pp")
+}],
+"loop": true,
+"name": &"flash_up",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -7462,7 +7564,7 @@ size = Vector2(308, 7)
 size = Vector2(1751, 374.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gpup"]
-size = Vector2(930.5, 362.5)
+size = Vector2(930.5, 337.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vx6ap"]
 size = Vector2(1523.25, 362.5)
@@ -7837,7 +7939,7 @@ offset_right = 183.0
 offset_bottom = 175.0
 
 [node name="FloodTimer" type="Timer" parent="Hud/Control"]
-wait_time = 4.0
+wait_time = 5.0
 autostart = true
 
 [node name="Upgrades" type="CanvasLayer" parent="."]
@@ -8533,6 +8635,7 @@ label_settings = SubResource("LabelSettings_todh8")
 horizontal_alignment = 1
 
 [node name="Chicken" type="Label" parent="WinScreen"]
+visible = false
 z_index = 11
 offset_left = 81.0
 offset_top = 60.0
@@ -8648,7 +8751,7 @@ script = ExtResource("4_nyq4j")
 z_as_relative = false
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_p1o3h")
-animation = &"punch_up"
+animation = &"flash_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 6)
@@ -8685,15 +8788,14 @@ shape = SubResource("ConvexPolygonShape2D_3xw8e")
 
 [node name="FlashSprite" type="Sprite2D" parent="Player/CameraFlashArea"]
 visible = false
-position = Vector2(45, -4)
-scale = Vector2(0.222826, 0.222826)
-texture = ExtResource("16_a8ccy")
+position = Vector2(48, 0)
+texture = ExtResource("26_wft16")
 
 [node name="FlashSpriteTimer" type="Timer" parent="Player/CameraFlashArea"]
-wait_time = 0.5
+wait_time = 0.08
 
 [node name="Flashing" type="Timer" parent="Player"]
-wait_time = 0.1
+wait_time = 0.08
 one_shot = true
 
 [node name="BeamFalloff" type="Area2D" parent="Player"]
@@ -8720,6 +8822,14 @@ position = Vector2(118, 56)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_a6sas")
 
+[node name="BGM" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(-166, -149)
+stream = ExtResource("27_wnpjd")
+autoplay = true
+
+[node name="Punching" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("29_pa4sl")
+
 [node name="TreeSpawnArea" type="Area2D" parent="."]
 z_as_relative = false
 y_sort_enabled = true
@@ -8732,10 +8842,10 @@ shape = SubResource("RectangleShape2D_q1rw1")
 [node name="StoneSpawnArea" type="Area2D" parent="."]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(-140, 405)
+position = Vector2(-135, 420)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StoneSpawnArea"]
-position = Vector2(2, 1)
+position = Vector2(2, -2)
 shape = SubResource("RectangleShape2D_4gpup")
 
 [node name="GrainSpawnArea" type="Area2D" parent="."]
@@ -8782,13 +8892,13 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_iih3b")
 
 [node name="Tree" parent="." instance=ExtResource("7_o345s")]
-position = Vector2(186, 93)
+position = Vector2(-47, 99)
 
 [node name="Stone" parent="." instance=ExtResource("8_ivbty")]
-position = Vector2(131, 181)
+position = Vector2(-110, 182)
 
 [node name="Grain" parent="." instance=ExtResource("9_p35ea")]
-position = Vector2(202, 191)
+position = Vector2(-55, 206)
 
 [node name="Cage" type="Area2D" parent="."]
 z_index = -1
@@ -9026,6 +9136,44 @@ horizontal_alignment = 1
 wait_time = 15.0
 one_shot = true
 
+[node name="Info" type="Control" parent="."]
+z_index = -2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WASD" type="Label" parent="Info"]
+z_index = -2
+layout_mode = 0
+offset_left = 80.0
+offset_top = 91.0
+offset_right = 494.0
+offset_bottom = 178.0
+scale = Vector2(0.35452, 0.35452)
+text = "1. Press WASD Keys to Move
+2. Press [E] To Interact with stuff
+3. [Left Click] to Fire a capture beam
+4. [Right Click] to Camera Flash Stun
+5. HOLD [SPACE] TO DELIVER ORDINANCE
+6. PRESS [ESC] TO SHOW THE UPGRADE MENU"
+label_settings = SubResource("LabelSettings_lpywa")
+horizontal_alignment = 1
+
+[node name="EndGame" type="Label" parent="Info"]
+z_index = -2
+layout_mode = 0
+offset_left = 80.0
+offset_top = 159.0
+offset_right = 494.0
+offset_bottom = 264.0
+scale = Vector2(0.35452, 0.35452)
+text = "GO EAST FROM HERE TO BUILD
+A VESSEL AND SAVE AS MUCH ANIMALS
+AS YOU CAN!"
+label_settings = SubResource("LabelSettings_lpywa")
+horizontal_alignment = 1
+
 [connection signal="pressed" from="Hud/Control/Delete1" to="Hud/Control" method="_on_delete_1_pressed"]
 [connection signal="pressed" from="Hud/Control/Delete2" to="Hud/Control" method="_on_delete_2_pressed"]
 [connection signal="pressed" from="Hud/Control/Delete3" to="Hud/Control" method="_on_delete_3_pressed"]
@@ -9088,6 +9236,8 @@ one_shot = true
 [connection signal="timeout" from="Player/CameraFlashArea/FlashSpriteTimer" to="Player" method="_on_flash_sprite_timer_timeout"]
 [connection signal="timeout" from="Player/Flashing" to="Player" method="_on_flashing_timeout"]
 [connection signal="area_entered" from="Player/BeamFalloff" to="Player/BeamFalloff" method="_on_area_entered"]
+[connection signal="finished" from="Player/BGM" to="Player" method="_on_bgm_finished"]
+[connection signal="finished" from="Player/Punching" to="Player" method="_on_punching_finished"]
 [connection signal="body_entered" from="Cage" to="Cage" method="_on_body_entered"]
 [connection signal="body_exited" from="Cage" to="Cage" method="_on_body_exited"]
 [connection signal="area_entered" from="Cage/TopLeft" to="Cage" method="_on_top_left_area_entered"]

@@ -1,10 +1,10 @@
 extends Node
 
 # Starting Resource Values
-var wood = 999
-var stone = 999
-var grain = 999
-var meat = 999
+var wood = 0
+var stone = 0
+var grain = 0
+var meat = 0
 
 # Resource Multipliers
 var multiplier_wood = 1

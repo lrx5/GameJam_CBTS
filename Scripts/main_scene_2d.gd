@@ -45,7 +45,6 @@ func _ready() -> void:
 	spawn_trees()
 	spawn_stones()
 	spawn_grains()
-	spawn_chickens()
 	spawn_wolf()
 	spawn_lion()
 	spawn_cow()

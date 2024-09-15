@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://dqmpu3m53sfke"]
+[gd_scene load_steps=27 format=3 uid="uid://dqmpu3m53sfke"]
 
 [ext_resource type="Script" path="res://Scripts/sheep.gd" id="1_vdc12"]
 [ext_resource type="Texture2D" uid="uid://bcv6vub0n7ceb" path="res://Sprites/Animal_Sprites.png" id="2_vw2vy"]
 [ext_resource type="Texture2D" uid="uid://3bvmqgq1jvoh" path="res://Sprites/stun_icon.png" id="3_lpyk8"]
 [ext_resource type="Texture2D" uid="uid://cuad8mmbulj3p" path="res://Sprites/Animal_Anim_Sprites.png" id="4_60xeg"]
+[ext_resource type="AudioStream" uid="uid://dc4kjl75d00on" path="res://Audio/damage_taken.wav" id="4_cp20q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rijia"]
 size = Vector2(14, 16)
@@ -236,6 +237,9 @@ libraries = {
 
 [node name="SheepSFX" type="AudioStreamPlayer2D" parent="."]
 
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_cp20q")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_as_relative = false
 y_sort_enabled = true
@@ -263,8 +267,13 @@ autoplay = "default"
 wait_time = 2.0
 one_shot = true
 
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="Reload" to="." method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="PunchTimer" to="." method="_on_punch_timer_timeout"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]

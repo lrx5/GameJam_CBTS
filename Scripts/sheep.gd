@@ -11,6 +11,8 @@ var can_collect = true
 @onready var animated_sprite_2d_2: AnimatedSprite2D = $AnimatedSprite2D2
 @onready var animated_sprite_2d_3: AnimatedSprite2D = $AnimatedSprite2D3
 @onready var punch_timer: Timer = $PunchTimer
+@onready var flash_timer: Timer = $FlashTimer
+@onready var hit_sfx: AudioStreamPlayer2D = $HitSFX
 
 @onready var rm = get_node("/root/MainScene/ResourceManager")
 # Movement Variables
@@ -44,6 +46,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("Ordinance") and can_collect == true:
 		goat_hp -= 1
 		can_collect = false
+		_flash_sprite()
+		hit_sfx.play()
 		punch_timer.start()
 
 func _physics_process(delta: float) -> void:
@@ -101,6 +105,29 @@ func _change_direction():
 		animated_sprite_2d_3.visible = true
 	target_position = position + directions[current_direction] * move_distance
 
+func _flash_sprite():
+	animated_sprite_2d.modulate.r = 1
+	animated_sprite_2d.modulate.g = 0.5
+	animated_sprite_2d.modulate.b = 0.5
+	animated_sprite_2d_2.modulate.r = 1
+	animated_sprite_2d_2.modulate.g = 0.5
+	animated_sprite_2d_2.modulate.b = 0.5
+	animated_sprite_2d_3.modulate.r = 1
+	animated_sprite_2d_3.modulate.g = 0.5
+	animated_sprite_2d_3.modulate.b = 0.5
+	flash_timer.start()
 
 func _on_punch_timer_timeout() -> void:
 	can_collect = true
+
+
+func _on_flash_timer_timeout() -> void:
+	animated_sprite_2d.modulate.r = 1
+	animated_sprite_2d.modulate.g = 1
+	animated_sprite_2d.modulate.b = 1
+	animated_sprite_2d_2.modulate.r = 1
+	animated_sprite_2d_2.modulate.g = 1
+	animated_sprite_2d_2.modulate.b = 1
+	animated_sprite_2d_3.modulate.r = 1
+	animated_sprite_2d_3.modulate.g = 1
+	animated_sprite_2d_3.modulate.b = 1
