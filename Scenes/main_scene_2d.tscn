@@ -9098,7 +9098,7 @@ offset_right = 198.0
 offset_bottom = 6.0
 scale = Vector2(0.35452, 0.35452)
 text = "500 WOOD; 400 STONE;
-300 GRAIN; 200 MEAT;
+300 GRAIN; 100 MEAT;
 [E] TO BUILD LIFE VESSEL"
 label_settings = SubResource("LabelSettings_cscqx")
 horizontal_alignment = 1
